@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <title>BOOK STORE</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="eCommerce HTML Template Free Download" name="keywords">
+    <meta content="eCommerce HTML Template Free Download" name="description">
+
+    <!-- Favicon -->
+    <link href="img/tieude.jpg" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/slick/slick.css" rel="stylesheet">
+    <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/fix.css" rel="stylesheet">
+    <link href="css/lichsumuahang.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Header Start -->
+    
+    
+    <div class="nav">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> &nbsp;Huynh Duc</a>
+                            <div class="dropdown-menu">
+                                <a href="thongtintaikhoan.html" class="dropdown-item"><i class="fa fa-id-card me-2"></i>  &nbsp;Thông tin</a>
+                                    <a href="lichsumuahang.html" class="dropdown-item"> <i class="fa fa-history me-2"></i>&nbsp;Lịch sử mua hàng</a>
+
+                                    <a href="login.html" class="dropdown-item"> <i class="fa fa-sign-out-alt me-2"></i>&nbsp;Đăng xuất</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="bottom-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="img/logo.png" alt="Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-container">
+                        <div class="search">
+                            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm">
+                            <button id="searchBtn"><i class="fa fa-search"></i></button>
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="cart.html" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active">lịch sử</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- My Account Start -->
+   
+<div class="my-account">
+  <div class="container-fluid">
+    <div class="row">
+     
+
+      <!-- Nội dung bên phải -->
+      <div class="col-md-8 offset-md-2">
+        <div class="tab-content">
+          <!-- Tab Thông tin tài khoản -->
+          
+
+          <!-- Tab Đơn hàng của tôi -->
+          <div display="block" class="tab-pane fade show active" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+            <h2 class="section-title">Đơn Hàng Của Tôi</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Mã Đơn</th>
+                    <th>Ngày Đặt</th>
+                    <th>Tổng Tiền</th>
+                    <th>PTTT</th>
+                    <th>Trạng Thái</th>
+                    <th>Chi Tiết</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+              <!-- Phân trang đơn hàng -->
+<div id="ordersPagination" class="pagination-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+    <!-- My Account End -->
+
+    <!-- Footer Start -->
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Liên hệ</h2>
+                        <div class="contact-info">
+                            <p><i class="fa fa-map-marker"></i>273 An Dương Vương Phường 3 Quận 5 TPHCM</p>
+                            <p><i class="fa fa-envelope"></i>info@example.com</p>
+                            <p><i class="fa fa-phone"></i>+012-345-67890</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Theo dõi chúng tôi</h2>
+                        <div class="contact-info">
+                            <div class="social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href=""><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Thông tin công ty</h2>
+                        <ul>
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Điều khoản & Điều kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Thông tin mua hàng</h2>
+                        <ul>
+                            <li><a href="#">Chính sách thanh toán</a></li>
+                            <li><a href="#">Chính sách vận chuyển</a></li>
+                            <li><a href="#">Chính sách đổi trả</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row payment align-items-center">
+                <div class="col-md-6">
+                    <div class="payment-method">
+                        <h2>Chúng tôi chấp nhận:</h2>
+                        <img src="img/payment-method.png" alt="Payment Method" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="payment-security">
+                        <h2>Được bảo mật bởi:</h2>
+                        <img src="img/godaddy.svg" alt="Payment Security" />
+                        <img src="img/norton.svg" alt="Payment Security" />
+                        <img src="img/ssl.svg" alt="Payment Security" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Footer Bottom Start -->
+
+    <!-- Footer Bottom End -->
+
+   <!-- Form tìm kiếm nâng cao -->
+<div id="advancedSearchModal" class="advanced-search-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tìm kiếm nâng cao</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="advancedSearchForm">
+                    <div class="form-group">
+                        <label>Tên sản phẩm:</label>
+                        <input id="tensp" type="text" name="keyword" placeholder="Nhập tên sản phẩm tìm kiếm...">
+                    </div>
+
+                    <div class="form-group">
+    <label>Danh mục:</label>
+    <!-- Thêm id="advancedCategorySelect" -->
+    <select name="category" id="advancedCategorySelect">
+        <option value="">Tất cả</option>
+        <!-- Các option khác sẽ được load từ API -->
+    </select>
+</div>
+
+                    <div class="form-group">
+                        <label>Khoảng giá:</label>
+                        <div class="price-range">
+                            <input type="text" name="minPrice" placeholder="Từ">
+                            <span>-</span>
+                            <input type="text" name="maxPrice" placeholder="Đến">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                    <button id="search" type="submit" class="btn-search">Tìm kiếm</button>
+
+                        <button type="button" class="btn-reset">Đặt lại</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/slick/slick.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/lsmh/search.js"></script>
+    <script src="js/lsmh/xuly.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Gọi hàm load danh mục ngay khi trang web tải xong
+    loadCategoriesToSearchModal();
+});
+
+async function loadCategoriesToSearchModal() {
+    const categorySelect = document.getElementById('advancedCategorySelect');
+    
+    // Đường dẫn API của bạn (thay đổi cho đúng với project của bạn)
+    const apiUrl = 'http://localhost/web2/controller/danhmuc.php?action=alladmin'; 
+
+    try {
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+
+        if (result.success && result.data) {
+            // Giữ lại option mặc định ban đầu (Tất cả)
+            let html = '<option value="">Tất cả</option>';
+
+            // Lặp qua mảng data trả về từ API
+            result.data.forEach(item => {
+                // value là madm, nội dung hiển thị là tendm
+                html += `<option value="${item.madm}">${item.tendm}</option>`;
+            });
+
+            // Gán lại nội dung HTML cho thẻ select
+            categorySelect.innerHTML = html;
+        }
+    } catch (error) {
+        console.error('Lỗi khi gọi API danh mục:', error);
+    }
+}
+    </script
+</body>
+
+</html>

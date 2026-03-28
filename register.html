@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>BOOK STORE - Đăng ký</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="eCommerce HTML Template Free Download" name="keywords">
+    <meta content="eCommerce HTML Template Free Download" name="description">
+
+    <!-- Favicon -->
+    <link href="img/tieude.jpg" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/slick/slick.css" rel="stylesheet">
+    <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/fix.css" rel="stylesheet">
+    <style>
+        /* Reset và biến màu */
+        :root {
+            --primary: #FF6B35;     /* Màu cam chính */
+            --primary-dark: #E55A2B; /* Cam đậm hơn */
+            --neutral-light: #F8F9FA; /* Xám nhạt */
+            --neutral: #E9ECEF;      /* Xám trung bình */
+            --neutral-dark: #6C757D;  /* Xám đậm */
+            --text: #212529;         /* Màu chữ chính */
+            --white: #FFFFFF;
+        }
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-light);
+            color: var(--text);
+        }
+        
+        /* Header */
+        .navbar-dark.bg-dark {
+            background-color: var(--primary) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Container chính */
+        .register-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 76px);
+            padding: 20px;
+        }
+        
+        .register-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px 35px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .register-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .register-icon {
+            background: var(--primary);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .register-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        
+        .register-subtitle {
+            color: var(--neutral-dark);
+            font-size: 15px;
+        }
+        
+        /* Form */
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+            font-size: 14px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid var(--neutral);
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background-color: var(--white);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
+            outline: none;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neutral-dark);
+            font-size: 16px;
+        }
+        
+        .input-with-icon .form-control {
+            padding-left: 45px;
+        }
+        
+        /* Nút đăng ký */
+        .btn-register {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-register:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        /* Liên kết phụ */
+        .register-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .register-links a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .register-links a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        /* Đăng nhập */
+        .login-prompt {
+            text-align: center;
+            margin-top: 5px;
+            padding-top: 5px;
+            border-top: 1px solid var(--neutral);
+            font-size: 15px;
+        }
+        
+        .login-prompt a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .login-prompt a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--neutral-light);
+            border-top: 1px solid var(--neutral);
+            margin-top: 50px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 576px) {
+            .register-card {
+                padding: 30px 25px;
+            }
+            
+            .register-links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+        }
+        
+/* Thêm vào phần style của bạn */
+/* Fix hiển thị cho select */
+#province {
+    color: #212529 !important;
+    background-color: white !important;
+}
+
+#province option {
+    color: #212529;
+    background: white;
+}
+
+#province:focus,
+#province:valid {
+    color: #212529 !important;
+    background-color: white !important;
+}
+/* Đảm bảo select hiển thị đúng màu chữ khi chọn */
+.form-control {
+    color: #212529 !important;
+    appearance: auto !important;
+    -webkit-appearance: menulist !important;
+    -moz-appearance: menulist !important;
+}
+
+/* Đảm bảo option hiển thị đúng màu chữ */
+.form-control option {
+    color: #212529;
+    background-color: white;
+}
+
+/* Khi select được focus hoặc có giá trị */
+.form-control:valid,
+.form-control:focus {
+    color: #212529 !important;
+}
+
+/* Fix cho Bootstrap select */
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 12px);
+    padding-right: 30px;
+    /* Xóa dòng background-image */
+    background-image: none;
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 8px 10px;
+}
+/* Thông báo */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.notification {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    min-width: 300px;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    transform: translateX(120%);
+    transition: transform 0.3s ease-in-out;
+    border-left: 4px solid var(--primary);
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    border-left-color: #28a745;
+}
+
+.notification.error {
+    border-left-color: #dc3545;
+}
+
+.notification.warning {
+    border-left-color: #ffc107;
+}
+
+.notification-icon {
+    margin-right: 12px;
+    font-size: 20px;
+}
+
+.notification.success .notification-icon {
+    color: #28a745;
+}
+
+.notification.error .notification-icon {
+    color: #dc3545;
+}
+
+.notification.warning .notification-icon {
+    color: #ffc107;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 15px;
+}
+
+.notification-message {
+    color: var(--neutral-dark);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: var(--neutral-dark);
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+    padding: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(120%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+/* Thông báo */
+.notification-container {
+    position: relative;
+    margin-bottom: 20px;
+    z-index: 100;
+}
+
+.notification {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    border-left: 4px solid var(--primary);
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification.success {
+    border-left-color: #28a745;
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+.notification.error {
+    border-left-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+.notification.warning {
+    border-left-color: #ffc107;
+    background-color: rgba(255, 193, 7, 0.05);
+}
+
+.notification-icon {
+    margin-right: 12px;
+    font-size: 20px;
+    min-width: 24px;
+}
+
+.notification.success .notification-icon {
+    color: #28a745;
+}
+
+.notification.error .notification-icon {
+    color: #dc3545;
+}
+
+.notification.warning .notification-icon {
+    color: #ffc107;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 15px;
+    color: var(--text);
+}
+
+.notification-message {
+    color: var(--neutral-dark);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: var(--neutral-dark);
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-close:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="nav">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <a href="#" class="navbar-brand">BOOK STORE</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <div class="nav-item dropdown">
+                            <div class="dropdown-menu">
+                                <a href="login.html" class="dropdown-item">Đăng nhập</a>
+                                <a href="register.html" class="dropdown-item">Đăng ký</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <!-- Register Section Start -->
+    <div class="register-wrapper">
+        <div class="register-card">
+            <div class="register-header">
+                
+                <h1 class="register-title">Đăng ký tài khoản</h1>
+            </div>
+            <div id="notificationContainer" class="notification-container"></div>
+
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label class="form-label" for="fullname">Họ và tên</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" class="form-control" id="fullname" placeholder="Nhập họ và tên của bạn">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn">
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+                    <label class="form-label" for="phone">Số điện thoại</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-phone input-icon"></i>
+                        <input type="tel" class="form-control" id="phone" placeholder="Nhập số điện thoại" pattern="[0-9]{10,11}">
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label class="form-label" for="district">tỉnh/Thành Phố</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-city input-icon"></i>
+                        <select class="form-control" id="city" >
+                            <option value="">Chọn Tỉnh/Thành Phố</option>
+                             <option value="">Chọn Thành phố</option>
+                      <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                      <option value="Hà Nội">Hà Nội</option>
+                      <option value="Đà Nẵng">Đà Nẵng</option>
+                      <option value="Cần Thơ">Cần Thơ</option>
+                      <option value="Hải Phòng">Hải Phòng</option>
+                      <option value="Nha Trang">Nha Trang</option>
+                      <option value="Đà Lạt">Đà Lạt</option>
+                      <option value="Vũng Tàu">Vũng Tàu</option>
+                      <option value="Huế">Huế</option>
+                      <option value="Buôn Ma Thuột">Buôn Ma Thuột</option>
+                      <option value="Vinh">Vinh</option>
+                      <option value="Quy Nhơn">Quy Nhơn</option>
+                      <option value="Long Xuyên">Long Xuyên</option>
+                      <option value="Thái Nguyên">Thái Nguyên</option>
+                      <option value="Nam Định">Nam Định</option>
+                      <option value="Rạch Giá">Rạch Giá</option>
+                      <option value="Thái Bình">Thái Bình</option>
+                      <option value="Thanh Hóa">Thanh Hóa</option>
+                      <option value="Hạ Long">Hạ Long</option>
+                        </select>
+                    </div>
+                </div>
+ <div class="form-group">
+                    <label class="form-label" for="district">Phường/Xã</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-map-marker-alt input-icon"></i>
+                        <select class="form-control" id="district" >
+                            <option value="">Chọn Phường/xã</option>
+                             <option value="Phường 1">Phường 1</option>
+                      <option value="Phường 2">Phường 2</option>
+                      <option value="Phường 3">Phường 3</option>
+                      <option value="Phường 4">Phường 4</option>
+                      <option value="Phường 5">Phường 5</option>
+                      <option value="Phường 6">Phường 6</option>
+                      <option value="Phường 7">Phường 7</option>
+                      <option value="Phường 8">Phường 8</option>
+                      <option value="Phường 9">Phường 9</option>
+                      <option value="Phường 10">Phường 10</option>
+                      <option value="Phường 11">Phường 11</option>
+                      <option value="Phường 12">Phường 12</option>
+                      <option value="Phường 13">Phường 13</option>
+                      <option value="Phường 14">Phường 14</option>
+                      <option value="Phường 15">Phường 15</option>
+                      <option value="Phường 16">Phường 16</option>
+                      <option value="Phường 17">Phường 17</option>
+                      <option value="Phường 18">Phường 18</option>
+                      <option value="Phường 19">Phường 19</option>
+                      <option value="Phường 20">Phường 20</option>
+                      <option value="Phường An Khánh">Phường An Khánh</option>
+                      <option value="Phường An Lợi Đông">Phường An Lợi Đông</option>
+                      <option value="Phường An Phú">Phường An Phú</option>
+                      <option value="Phường Bình An">Phường Bình An</option>
+                      <option value="Phường Bình Khánh">Phường Bình Khánh</option>
+                      <option value="Phường Bình Trưng Đông">Phường Bình Trưng Đông</option>
+                      <option value="Phường Bình Trưng Tây">Phường Bình Trưng Tây</option>
+                      <option value="Phường Cát Lái">Phường Cát Lái</option>
+                      <option value="Phường Long Bình">Phường Long Bình</option>
+                      <option value="Phường Long Phước">Phường Long Phước</option>
+                      <option value="Phường Long Thạnh Mỹ">Phường Long Thạnh Mỹ</option>
+                      <option value="Phường Long Trường">Phường Long Trường</option>
+                      <option value="Phường Phú Hữu">Phường Phú Hữu</option>
+                      <option value="Phường Phước Bình">Phường Phước Bình</option>
+                      <option value="Phường Phước Long A">Phường Phước Long A</option>
+                      <option value="Phường Phước Long B">Phường Phước Long B</option>
+                      <option value="Phường Tân Hưng">Phường Tân Hưng</option>
+                      <option value="Phường Tân Kiểng">Phường Tân Kiểng</option>
+                      <option value="Phường Tân Phong">Phường Tân Phong</option>
+                      <option value="Phường Tân Phú">Phường Tân Phú</option>
+                      <option value="Phường Tân Quy">Phường Tân Quy</option>
+                      <option value="Phường Tân Thuận Đông">Phường Tân Thuận Đông</option>
+                      <option value="Phường Tân Thuận Tây">Phường Tân Thuận Tây</option>
+                      <option value="Phường Thảo Điền">Phường Thảo Điền</option>
+                      <option value="Phường Chợ Quán">Phường Chợ Quán</option>
+
+                      <option value="Phường Thủ Thiêm">Phường Thủ Thiêm</option>
+                      <option value="Phường Trường Thạnh">Phường Trường Thạnh</option>
+                      <option value="Xã Bình Chánh">Xã Bình Chánh</option>
+                      <option value="Xã Cần Thạnh">Xã Cần Thạnh</option>
+                      <option value="Xã Long Hòa">Xã Long Hòa</option>
+                      <option value="Xã Lý Nhơn">Xã Lý Nhơn</option>
+                      <option value="Xã Nhơn Đức">Xã Nhơn Đức</option>
+                      <option value="Xã Phú Xuân">Xã Phú Xuân</option>
+                      <option value="Xã Vĩnh Lộc A">Xã Vĩnh Lộc A</option>
+                      <option value="Xã Vĩnh Lộc B">Xã Vĩnh Lộc B</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- MODIFIED: Thêm trường số nhà -->
+                <div class="form-group">
+                    <label class="form-label" for="street">Số nhà, tên đường</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-home input-icon"></i>
+                        <input type="text" class="form-control" id="street" placeholder="Ví dụ: 123 Đường ABC">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="password">Mật khẩu</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="confirm-password">Xác nhận mật khẩu</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" class="form-control" id="confirm-password" placeholder="Nhập lại mật khẩu">
+                    </div>
+                </div>
+                <!-- Notification Container -->
+                
+                <button type="submit" class="btn-register">Đăng ký</button>
+
+                <div class="login-prompt">
+                    <span>Đã có tài khoản? </span>
+                    <a href="login.html"><u>Đăng nhập ngay</u></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Register Section End -->
+
+    <!-- Footer Start -->
+   
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/slick/slick.min.js"></script>
+    
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    
+    <!-- Register Script -->
+    <script>
+        
+// Hàm hiển thị thông báo
+// Hàm hiển thị thông báo
+function showThongBao(type, message, title = 'Thông báo') {
+    // Tạo container nếu chưa có
+    let container = document.getElementById('globalNotificationContainer');
+    
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'globalNotificationContainer';
+        container.className = 'notification-container-global';
+        
+        // Thêm style cho container toàn cục
+        const style = document.createElement('style');
+        style.textContent = `
+            .notification-container-global {
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                z-index: 99999;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                pointer-events: none;
+            }
+            
+            .notification-global {
+                pointer-events: auto;
+                background: var(--white);
+                border-radius: 8px;
+                padding: 16px 20px;
+                margin-bottom: 12px;
+                min-width: 300px;
+                max-width: 400px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+                display: flex;
+                align-items: center;
+                transform: translateX(120%);
+                opacity: 0;
+                transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border-left: 4px solid var(--primary);
+                animation: slideInRight 0.5s forwards;
+            }
+            
+            @keyframes slideInRight {
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(120%);
+                    opacity: 0;
+                }
+            }
+            
+            .notification-global.success {
+                border-left-color: #28a745;
+                background: linear-gradient(to right, rgba(40, 167, 69, 0.05), white);
+            }
+            
+            .notification-global.error {
+                border-left-color: #dc3545;
+                background: linear-gradient(to right, rgba(220, 53, 69, 0.05), white);
+            }
+            
+            .notification-global.warning {
+                border-left-color: #ffc107;
+                background: linear-gradient(to right, rgba(255, 193, 7, 0.05), white);
+            }
+            
+            .notification-global.info {
+                border-left-color: var(--primary);
+                background: linear-gradient(to right, rgba(255, 107, 53, 0.05), white);
+            }
+            
+            .notification-icon {
+                margin-right: 12px;
+                font-size: 20px;
+                min-width: 24px;
+            }
+            
+            .notification-global.success .notification-icon {
+                color: #28a745;
+            }
+            
+            .notification-global.error .notification-icon {
+                color: #dc3545;
+            }
+            
+            .notification-global.warning .notification-icon {
+                color: #ffc107;
+            }
+            
+            .notification-global.info .notification-icon {
+                color: var(--primary);
+            }
+            
+            .notification-content {
+                flex: 1;
+            }
+            
+            .notification-title {
+                font-weight: 600;
+                margin-bottom: 4px;
+                font-size: 15px;
+                color: var(--text);
+            }
+            
+            .notification-message {
+                color: var(--neutral-dark);
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            .notification-close {
+                background: none;
+                border: none;
+                color: var(--neutral-dark);
+                cursor: pointer;
+                font-size: 16px;
+                margin-left: 10px;
+                padding: 4px;
+                opacity: 0.7;
+                transition: all 0.2s;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .notification-close:hover {
+                opacity: 1;
+                background-color: rgba(0, 0, 0, 0.05);
+                transform: scale(1.1);
+            }
+        `;
+        document.head.appendChild(style);
+        document.body.appendChild(container);
+    }
+    
+    // Tạo thông báo
+    const notification = document.createElement('div');
+    notification.className = `notification-global ${type}`;
+    
+    // Tạo icon dựa trên loại thông báo
+    let icon = 'fa-info-circle';
+    if (type === 'success') icon = 'fa-check-circle';
+    if (type === 'error') icon = 'fa-exclamation-circle';
+    if (type === 'warning') icon = 'fa-exclamation-triangle';
+    
+    notification.innerHTML = `
+        <div class="notification-icon">
+            <i class="fas ${icon}"></i>
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">${title}</div>
+            <div class="notification-message">${message}</div>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.style.animation = 'slideOutRight 0.5s forwards'; setTimeout(() => this.parentElement.remove(), 500)">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    // Thêm vào container
+    container.appendChild(notification);
+    
+    // Tự động xóa sau 5 giây
+    const autoRemove = setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.5s forwards';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 500);
+    }, 5000);
+    
+    // Hủy tự động xóa khi hover
+    notification.addEventListener('mouseenter', () => {
+        clearTimeout(autoRemove);
+    });
+    
+    notification.addEventListener('mouseleave', () => {
+        const newAutoRemove = setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.5s forwards';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 500);
+        }, 3000);
+        notification.dataset.autoRemove = newAutoRemove;
+    });
+    
+    return notification;
+}
+
+// Hàm validate email
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// Hàm validate số điện thoại
+function validatePhone(phone) {
+    const re = /^[0-9]{10,11}$/;
+    return re.test(phone);
+}
+
+// Hàm validate form
+function validateForm() {
+    const fields = [
+        { id: 'fullname', name: 'Họ và tên' },
+        { id: 'email', name: 'Email' },
+        { id: 'phone', name: 'Số điện thoại' },
+        { id: 'street', name: 'Số nhà, tên đường' },
+        { id: 'password', name: 'Mật khẩu' },
+        { id: 'confirm-password', name: 'Xác nhận mật khẩu' }
+    ];
+    
+    const selects = [
+        { id: 'city', name: 'Tỉnh/Thành phố' },
+        { id: 'district', name: 'Phường/Xã' }
+    ];
+    
+    // Kiểm tra các trường input
+    for (const field of fields) {
+        const element = document.getElementById(field.id);
+        const value = element.value.trim();
+        
+        if (!value) {
+            showThongBao('error', `Vui lòng nhập ${field.name.toLowerCase()}!`);
+            element.focus();
+            return false;
+        }
+    }
+    
+    // Kiểm tra các trường select
+    for (const select of selects) {
+        const element = document.getElementById(select.id);
+        
+        if (!element.value) {
+            showThongBao('error', `Vui lòng chọn ${select.name.toLowerCase()}!`);
+            element.focus();
+            return false;
+        }
+    }
+    
+    // Validate email
+    const email = document.getElementById('email').value.trim();
+    if (!validateEmail(email)) {
+        showThongBao('error', 'Email không hợp lệ! Vui lòng nhập đúng định dạng email.');
+        document.getElementById('email').focus();
+        return false;
+    }
+    
+    // Validate số điện thoại
+    const phone = document.getElementById('phone').value.trim();
+    if (!validatePhone(phone)) {
+        showThongBao('error', 'Số điện thoại phải có 10-11 chữ số!');
+        document.getElementById('phone').focus();
+        return false;
+    }
+    
+    // Validate mật khẩu
+    const password = document.getElementById('password').value;
+    if (password.length < 6) {
+        showThongBao('error', 'Mật khẩu phải có ít nhất 6 ký tự!');
+        document.getElementById('password').focus();
+        return false;
+    }
+    
+    // Kiểm tra mật khẩu khớp
+    const confirmPassword = document.getElementById('confirm-password').value;
+    if (password !== confirmPassword) {
+        showThongBao('error', 'Mật khẩu và xác nhận mật khẩu không khớp!');
+        document.getElementById('confirm-password').focus();
+        return false;
+    }
+    
+    return true;
+}
+
+// Xử lý submit form
+// Xử lý submit form
+document.getElementById('registerForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    // Validate form
+    if (!validateForm()) {
+        return;
+    }
+    
+    // Tạo đối tượng FormData (đúng với PHP backend)
+    const formData = new FormData();
+    formData.append('hoten', document.getElementById('fullname').value.trim());
+    formData.append('email', document.getElementById('email').value.trim());
+    formData.append('sdt', document.getElementById('phone').value.trim());
+    formData.append('sonha', document.getElementById('street').value.trim());
+    formData.append('phuongxa', document.getElementById('district').value);
+    formData.append('thanhpho', document.getElementById('city').value);
+    formData.append('username', document.getElementById('email').value.trim());
+    formData.append('password', document.getElementById('password').value);
+
+    try {
+        // Gửi dữ liệu đến API với phương thức POST
+        const response = await fetch('http://localhost/web2/controller/customer.php', {
+            method: 'POST',
+            body: formData
+            // Không cần set Content-Type header khi dùng FormData, browser sẽ tự set
+        });
+        
+        // Parse JSON response
+        const data = await response.json();
+                
+        if (data.success === true || data.success === "true") {
+            // Đăng ký thành công
+            showThongBao('success', 'Đăng ký tài khoản thành công! Vui lòng đăng nhập để mua sắm', 'Thành công');
+            
+            // Chuyển hướng sau 2 giây
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 5000);
+        } else {
+            // Đăng ký thất bại
+            const errorMessage = data.message || data.error || 'Đăng ký thất bại. Vui lòng thử lại!';
+            showThongBao('error', errorMessage, 'Thất bại');
+        }
+    } catch (error) {
+        console.error('Fetch Error:', error);
+        showThongBao('error', 'Có lỗi xảy ra khi kết nối đến máy chủ. Vui lòng thử lại!', 'Lỗi kết nối');
+    }
+});
+
+
+
+    </script>
+</body>
+</html> 

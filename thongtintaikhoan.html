@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <title>BOOK STORE</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="eCommerce HTML Template Free Download" name="keywords">
+    <meta content="eCommerce HTML Template Free Download" name="description">
+
+    <!-- Favicon -->
+    <link href="img/tieude.jpg" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/slick/slick.css" rel="stylesheet">
+    <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/fix.css" rel="stylesheet">
+    <style>
+        .my-account {
+            margin-bottom: 200px;
+            margin-top: 30px;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff6f61;
+        }
+        .edit-btn-container {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .btn-edit {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-edit:hover {
+            background-color: #e65a50;
+            color: white;
+        }
+
+        /* Container tổng cho vùng search */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        /* Thanh search bên trái */
+        .search {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .search input {
+            width: 100%;
+            padding-right: 30px; /* Chừa chỗ cho nút search sát rìa */
+        }
+
+        .search button {
+            position: absolute !important;
+            right: 0 !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            z-index: 2;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 18px !important;
+            color: #ff6f61 !important;
+            height: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 0 !important;
+            cursor: pointer;
+            margin: 0 !important;
+        }
+
+        .search button:hover {
+            background: #ff6f61 !important;
+            color: white !important;
+        }
+
+        .search button i {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        /* Nút phễu bên phải thanh search */
+        .filter-button-container {
+            flex-shrink: 0;
+        }
+
+        /* Nút phễu lọc */
+        .filter-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            background: white;
+            border: 2px solid #28a745;
+            color: #28a745;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-btn:hover {
+            background: #28a745;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Modal tìm kiếm nâng cao */
+        .advanced-search-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-range input {
+            width: calc(50% - 5px);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .btn-search {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-reset {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* ==================== QUICK VIEW STYLES ==================== */
+/* QUICK VIEW */
+.qv-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.qv-card {
+    background: #fff;
+    border-radius: 14px;
+    max-width: 980px;
+    width: calc(100% - 32px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    position: relative;
+    padding: 28px;
+}
+
+.qv-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #1e6bd6;
+    color: #1e6bd6;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.qv-body {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.qv-img {
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    display: grid;
+    place-items: center;
+}
+
+.qv-img img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.qv-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.qv-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+.qv-meta {
+    margin: 8px 0 14px;
+    color: #1e6bd6;
+    font-weight: 600;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.qv-price {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ff6f61;
+    margin: 0 0 14px;
+}
+
+.qv-desc {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.qv-note {
+    color: #1e6bd6;
+    margin: 8px 0 18px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.qv-meta-container {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.qv-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qv-meta-item i {
+    color: #1e6bd6;
+    width: 20px;
+}
+
+.qv-meta-item span {
+    font-weight: 500;
+}
+
+.qv-meta-item em {
+    color: #333;
+}
+
+.qv-add {
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px;
+    background: #1e6bd6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 18px;
+}
+
+.qv-add i {
+    font-size: 18px;
+}
+/* ================== FIXED HEADER - NO GAP - NO SCROLL ================== */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.bottom-bar {
+    position: fixed;
+    top: 45px; /* Chiều cao ước tính của .nav */
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top: none !important;
+}
+
+/* Đảm bảo body có padding để nội dung không bị che */
+body {
+    padding-top: 115px !important; /* 45px (nav) + 70px (bottom-bar) */
+}
+@media (max-width: 768px) {
+    .qv-body {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header Start -->
+    
+    
+    <div class="nav">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> &nbsp;Huynh Duc</a>
+                            <div class="dropdown-menu">
+                                 <a href="thongtintaikhoan.html" class="dropdown-item"><i class="fa fa-id-card me-2"></i>  &nbsp;Thông tin</a>
+                                    <a href="lichsumuahang.html" class="dropdown-item"> <i class="fa fa-history me-2"></i>&nbsp;Lịch sử mua hàng</a>
+
+                                    <a href="login.html" class="dropdown-item"> <i class="fa fa-sign-out-alt me-2"></i>&nbsp;Đăng xuất</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+   
+
+    
+    <div class="bottom-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="img/logo.png" alt="Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-container">
+                        <div class="search">
+                            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm">
+                            <button id="searchBtn"><i class="fa fa-search"></i></button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="cart.html" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Tài khoản</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- My Account Start -->
+   
+<div class="my-account">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Menu bên trái -->
+     
+
+      <!-- Nội dung bên phải -->
+      <div class="col-md-8 offset-md-2">
+        <div class="tab-content">
+          <!-- Tab Thông tin tài khoản -->
+          <div class="tab-pane fade show active" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
+            <h2 class="section-title">Thông Tin Tài Khoản</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="table1">
+              
+              </table>
+
+            
+              
+              <!-- Nút chỉnh sửa thông tin -->
+              <div class="edit-btn-container">
+                <a href="edittk.html" class="btn btn-edit">
+                  <i class="fas fa-edit"></i> Chỉnh sửa thông tin
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+    <!-- My Account End -->
+
+    <!-- Footer Start -->
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Liên hệ</h2>
+                        <div class="contact-info">
+                            <p><i class="fa fa-map-marker"></i>273 An Dương Vương Phường 3 Quận 5 TPHCM</p>
+                            <p><i class="fa fa-envelope"></i>info@example.com</p>
+                            <p><i class="fa fa-phone"></i>+012-345-67890</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Theo dõi chúng tôi</h2>
+                        <div class="contact-info">
+                            <div class="social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href=""><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Thông tin công ty</h2>
+                        <ul>
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Điều khoản & Điều kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Thông tin mua hàng</h2>
+                        <ul>
+                            <li><a href="#">Chính sách thanh toán</a></li>
+                            <li><a href="#">Chính sách vận chuyển</a></li>
+                            <li><a href="#">Chính sách đổi trả</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row payment align-items-center">
+                <div class="col-md-6">
+                    <div class="payment-method">
+                        <h2>Chúng tôi chấp nhận:</h2>
+                        <img src="img/payment-method.png" alt="Payment Method" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="payment-security">
+                        <h2>Được bảo mật bởi:</h2>
+                        <img src="img/godaddy.svg" alt="Payment Security" />
+                        <img src="img/norton.svg" alt="Payment Security" />
+                        <img src="img/ssl.svg" alt="Payment Security" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Footer Bottom Start -->
+
+    <!-- Footer Bottom End -->
+
+    <!-- Form tìm kiếm nâng cao -->
+     <div id="advancedSearchModal" class="advanced-search-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tìm kiếm nâng cao</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="advancedSearchForm">
+                    <div class="form-group">
+                        <label>Tên sản phẩm:</label>
+                        <input id="tensp" type="text" name="keyword" placeholder="Nhập tên sản phẩm tìm kiếm...">
+                    </div>
+
+                    <div class="form-group">
+    <label>Danh mục:</label>
+    <!-- Thêm id="advancedCategorySelect" -->
+    <select name="category" id="advancedCategorySelect">
+        <option value="">Tất cả</option>
+        <!-- Các option khác sẽ được load từ API -->
+    </select>
+</div>
+
+                    <div class="form-group">
+                        <label>Khoảng giá:</label>
+                        <div class="price-range">
+                            <input type="text" name="minPrice" placeholder="Từ">
+                            <span>-</span>
+                            <input type="text" name="maxPrice" placeholder="Đến">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button id="search" type="submit" class="btn-search">Tìm kiếm</button>
+                        <button type="button" class="btn-reset">Đặt lại</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/slick/slick.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+   
+    <script src="js/thongtintaikhoan/xuly.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Gọi hàm load danh mục ngay khi trang web tải xong
+    loadCategoriesToSearchModal();
+});
+
+async function loadCategoriesToSearchModal() {
+    const categorySelect = document.getElementById('advancedCategorySelect');
+    
+    // Đường dẫn API của bạn (thay đổi cho đúng với project của bạn)
+    const apiUrl = 'http://localhost/web2/controller/danhmuc.php?action=alladmin'; 
+
+    try {
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+
+        if (result.success && result.data) {
+            // Giữ lại option mặc định ban đầu (Tất cả)
+            let html = '<option value="">Tất cả</option>';
+
+            // Lặp qua mảng data trả về từ API
+            result.data.forEach(item => {
+                // value là madm, nội dung hiển thị là tendm
+                html += `<option value="${item.madm}">${item.tendm}</option>`;
+            });
+
+            // Gán lại nội dung HTML cho thẻ select
+            categorySelect.innerHTML = html;
+        }
+    } catch (error) {
+        console.error('Lỗi khi gọi API danh mục:', error);
+    }
+}
+    </script>
+</body>
+
+</html>

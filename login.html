@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>BOOK STORE - Đăng nhập</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="eCommerce HTML Template Free Download" name="keywords">
+    <meta content="eCommerce HTML Template Free Download" name="description">
+
+    <!-- Favicon -->
+    <link href="img/tieude.jpg" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/slick/slick.css" rel="stylesheet">
+    <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/fix.css" rel="stylesheet">
+    <style>
+        /* Reset và biến màu */
+        :root {
+            --primary: #FF6B35;     /* Màu cam chính */
+            --primary-dark: #E55A2B; /* Cam đậm hơn */
+            --neutral-light: #F8F9FA; /* Xám nhạt */
+            --neutral: #E9ECEF;      /* Xám trung bình */
+            --neutral-dark: #6C757D;  /* Xám đậm */
+            --text: #212529;         /* Màu chữ chính */
+            --white: #FFFFFF;
+        }
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-light);
+            color: var(--text);
+        }
+        
+        /* Header */
+        .navbar-dark.bg-dark {
+            background-color: var(--primary) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Container chính */
+        .login-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 76px);
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 35px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .login-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .login-icon {
+            background: var(--primary);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .login-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        
+        .login-subtitle {
+            color: var(--neutral-dark);
+            font-size: 15px;
+        }
+        
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+            font-size: 14px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid var(--neutral);
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background-color: var(--white);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
+            outline: none;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neutral-dark);
+            font-size: 16px;
+        }
+        
+        .input-with-icon .form-control {
+            padding-left: 45px;
+        }
+        
+        /* Nút đăng nhập */
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-login:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        /* Liên kết phụ */
+        .login-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        
+        .login-links a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .login-links a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        /* Đăng ký */
+        .signup-prompt {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--neutral);
+            font-size: 15px;
+        }
+        
+        .signup-prompt a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .signup-prompt a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--neutral-light);
+            border-top: 1px solid var(--neutral);
+            margin-top: 50px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 576px) {
+            .login-card {
+                padding: 30px 25px;
+            }
+            
+            .login-links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+        }
+        /* Toggle password icon */
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--neutral-dark);
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+.password-toggle:hover {
+    color: var(--primary);
+}
+
+/* Điều chỉnh khoảng trống bên phải của input để không bị che icon */
+.input-with-icon .form-control {
+    padding-right: 45px;  /* Thêm dòng này */
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="nav">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <a href="#" class="navbar-brand">BOOK STORE</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <div class="nav-item dropdown">
+                            <div class="dropdown-menu">
+                                <a href="login.html" class="dropdown-item">Đăng nhập</a>
+                                <a href="register.html" class="dropdown-item">Đăng ký</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <!-- Login Section Start -->
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h1 class="login-title">Đăng nhập</h1>
+            </div>
+            
+            <form id="loginForm">
+    <div class="form-group">
+        <label class="form-label" for="email">Tên đăng nhập</label>
+        <div class="input-with-icon">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="text" class="form-control" id="email" placeholder="Nhập email của bạn" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-label" for="password">Mật khẩu</label>
+        <div class="input-with-icon">
+    <i class="fas fa-lock input-icon"></i>
+    <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
+<i class="fas fa-eye-slash password-toggle" id="togglePassword" role="button" aria-label="Hiển thị mật khẩu" tabindex="0"></i>
+</div>
+    </div>
+    
+    <button type="submit" class="btn-login">Đăng nhập</button>
+
+    <!-- ✨ Đưa phần đăng ký lên trên -->
+    <div class="signup-prompt" style="margin-top: 15px; padding-top: 15px; border-top: none;">
+        <span>Chưa có tài khoản? </span>
+        <a href="register.html"><u>Đăng ký ngay</u></a>
+    </div>
+    
+    
+</form>
+
+        </div>
+    </div>
+    <!-- Login Section End -->
+
+    <!-- Footer Start -->
+    
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/slick/slick.min.js"></script>
+    
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    
+    <!-- Login Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            
+            if (loginForm) {
+                loginForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Lấy giá trị từ form
+                    const username = emailInput.value.trim();
+                    const password = passwordInput.value.trim();
+                    
+                    // Validate input
+                    if (!username || !password) {
+                        showMessage('Vui lòng nhập đầy đủ email và mật khẩu', 'error');
+                        return;
+                    }
+                    
+                    // Hiển thị loading
+                    const submitBtn = loginForm.querySelector('.btn-login');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Đang đăng nhập...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        // Gửi request đến API
+                        const formData = new FormData();
+                        formData.append('username', username);
+                        formData.append('password', password);
+                        
+                        const response = await fetch('controller/xulylogin.php', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (data.success) {
+                            // Đăng nhập thành công
+                            showMessage('Đăng nhập thành công!', 'success');
+                            
+                            // Lưu thông tin user vào localStorage (tùy chọn)
+                            localStorage.setItem('user_info', JSON.stringify(data.data));
+                            
+                            // Chuyển hướng sau 1.5 giây
+                            setTimeout(() => {
+                                window.location.href = 'index.html';
+                            }, 1500);
+                            
+                        } else {
+                            // Đăng nhập thất bại
+                            showMessage(data.message || 'Đăng nhập thất bại', 'error');
+                        }
+                        
+                    } catch (error) {
+                        console.error('Login error:', error);
+                        showMessage('Lỗi kết nối. Vui lòng thử lại sau.', 'error');
+                    } finally {
+                        // Reset button
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+        });
+        
+        /**
+         * Hiển thị thông báo cho user
+         */
+        function showMessage(message, type = 'info') {
+            // Xóa thông báo cũ nếu có
+            const existingAlert = document.querySelector('.login-alert');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+            
+            // Tạo thông báo mới
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `login-alert alert alert-${type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info'}`;
+            alertDiv.style.cssText = `
+                margin-bottom: 20px;
+                padding: 12px 16px;
+                border-radius: 8px;
+                font-size: 14px;
+                animation: slideDown 0.3s ease;
+            `;
+            alertDiv.textContent = message;
+            
+            // Thêm CSS animation
+            if (!document.querySelector('#login-alert-styles')) {
+                const style = document.createElement('style');
+                style.id = 'login-alert-styles';
+                style.textContent = `
+                    @keyframes slideDown {
+                        from { opacity: 0; transform: translateY(-10px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Chèn thông báo vào form
+            const form = document.getElementById('loginForm');
+            form.insertBefore(alertDiv, form.firstChild);
+            
+            // Tự động ẩn sau 5 giây (trừ success message)
+            if (type !== 'success') {
+                setTimeout(() => {
+                    if (alertDiv.parentNode) {
+                        alertDiv.style.animation = 'slideUp 0.3s ease';
+                        setTimeout(() => alertDiv.remove(), 300);
+                    }
+                }, 5000);
+            }
+        }
+       // Toggle password visibility
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('password');
+
+if (togglePassword && passwordInput) {
+    togglePassword.addEventListener('click', function() {
+        // Kiểm tra trạng thái hiện tại
+        const isPassword = passwordInput.getAttribute('type') === 'password';
+        
+        if (isPassword) {
+            // Nếu đang là password (ẩn) -> chuyển thành text (hiện)
+            passwordInput.setAttribute('type', 'text');
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+            this.setAttribute('aria-label', 'Ẩn mật khẩu');
+        } else {
+            // Nếu đang là text (hiện) -> chuyển thành password (ẩn)
+            passwordInput.setAttribute('type', 'password');
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+            this.setAttribute('aria-label', 'Hiển thị mật khẩu');
+        }
+    });
+
+    // Hỗ trợ phím Enter cho accessibility
+    togglePassword.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            togglePassword.click();
+        }
+    });
+}
+    </script>
+</body>
+</html>

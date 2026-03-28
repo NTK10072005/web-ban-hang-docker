@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <title>BOOK STORE</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="eCommerce HTML Template Free Download" name="keywords">
+    <meta content="eCommerce HTML Template Free Download" name="description">
+
+    <!-- Favicon -->
+    <link href="img/tieude.jpg" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/slick/slick.css" rel="stylesheet">
+    <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/fix.css" rel="stylesheet">
+   <link href="css/index.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="nav">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
+                        <a href="danhmuc.html" class="nav-item nav-link">Danh mục</a>
+
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> <i
+                                    class="fas fa-user"></i> &nbsp;Tài khoản</a>
+                            <div class="dropdown-menu">
+                                <a href="login.html" class="dropdown-item"><i
+                                        class="fa fa-sign-in-alt"></i>&nbsp;&nbsp;Đăng nhập</a>
+                                <a href="register.html" class="dropdown-item"> <i
+                                        class="fa fa-user-plus"></i>&nbsp;&nbsp;Đăng ký</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="img/logo.png" alt="Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-container">
+                        <div class="search">
+                            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm">
+                            <button id="searchBtn"><i class="fa fa-search"></i></button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="cart.html" id="cartBtn" class="btn cart" onclick="check()">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Main Slider Start -->
+    <div class="header">
+        <div class="container-fluid p-0">
+            <div class="header-slider">
+                <div class="slide"><img src="img/banner1.webp" alt="Banner 1"></div>
+                <div class="slide"><img src="img/banner2.webp" alt="Banner 2"></div>
+                <div class="slide"><img src="img/banner3.webp" alt="Banner 3"></div>
+                 <div class="slide"><img src="img/banner4.jpg" alt="Banner 4"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Product Start - Sản phẩm mới nhất (giống ảnh đầu) -->
+    <div class="featured-product product">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h1>Sản Phẩm Mới Nhất</h1>
+            </div>
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    <!-- Featured Product End -->
+
+  
+
+    <!-- Danh mục sản phẩm với phân loại và phân trang -->
+  
+    <!-- Thêm FontAwesome cho icon rating nếu chưa có -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!--kết thúc danh mục sản phẩm-->
+
+    <!-- Feature Start-->
+    <div class="feature">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fab fa-cc-mastercard"></i>
+                        <h2>Bảo mật thanh toán</h2>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fa fa-truck"></i>
+                        <h2>Free ship toàn quốc</h2>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fa fa-sync-alt"></i>
+                        <h2>Đổi trả trong 90 ngày</h2>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 feature-col">
+                    <div class="feature-content">
+                        <i class="fa fa-comments"></i>
+                        <h2>Hỗ trợ 24/7</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End-->
+
+    <!-- Footer Start -->
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Liên hệ</h2>
+                        <div class="contact-info">
+                            <p><i class="fa fa-map-marker"></i>273 An Dương Vương Phường 3 Quận 5 TPHCM</p>
+                            <p><i class="fa fa-envelope"></i>info@example.com</p>
+                            <p><i class="fa fa-phone"></i>+012-345-67890</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Theo dõi chúng tôi</h2>
+                        <div class="contact-info">
+                            <div class="social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href=""><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Thông tin công ty</h2>
+                        <ul>
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Điều khoản & Điều kiện</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h2>Thông tin mua hàng</h2>
+                        <ul>
+                            <li><a href="#">Chính sách thanh toán</a></li>
+                            <li><a href="#">Chính sách vận chuyển</a></li>
+                            <li><a href="#">Chính sách đổi trả</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row payment align-items-center">
+                <div class="col-md-6">
+                    <div class="payment-method">
+                        <h2>Chúng tôi chấp nhận:</h2>
+                        <img src="img/payment-method.png" alt="Payment Method" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="payment-security">
+                        <h2>Được bảo mật bởi:</h2>
+                        <img src="img/godaddy.svg" alt="Payment Security" />
+                        <img src="img/norton.svg" alt="Payment Security" />
+                        <img src="img/ssl.svg" alt="Payment Security" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/slick/slick.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+
+    <!-- Form tìm kiếm nâng cao -->
+    <div id="advancedSearchModal" class="advanced-search-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tìm kiếm nâng cao</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="advancedSearchForm">
+                    <div class="form-group">
+                        <label>Tên sản phẩm:</label>
+                        <input id="tensp" type="text" name="keyword" placeholder="Nhập tên sản phẩm tìm kiếm...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Danh mục:</label>
+                        <select name="category">
+                            <option value="">Tất cả</option>
+                            <option value="Thieunhi">Thiếu nhi</option>
+                            <option value="Tamly">Tâm lý</option>
+                            <option value="Tongiao">Tôn giáo</option>
+                            <option value="Lichsu">Lịch sử</option>
+                            <option value="Vanhoc">Văn học</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Khoảng giá:</label>
+                        <div class="price-range">
+                            <input type="text" name="minPrice" placeholder="Từ">
+                            <span>-</span>
+                            <input type="text" name="maxPrice" placeholder="Đến">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button id="search" type="submit" class="btn-search">Tìm kiếm</button>
+                        <button type="button" class="btn-reset">Đặt lại</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/index/checklogin.js"></script>
+    <script src="js/index/shownewproduct.js"></script>
+    <script src="js/index/showallproduct.js"></script>
+    <script>
+async function fetchCategories() {
+            const response2 = await fetch('http://localhost/web2/controller/danhmuc.php?action=alladmin');
+            const data2 = await response2.json();
+            if (data2.success) {
+                const categories = data2.data;
+                categories.forEach(cat => {
+                    categoryMapping[cat.madm] = cat.tendm;
+                });
+            } else {
+                console.error('Failed to fetch categories:', data2.message);
+            }
+}
+        // ==================== UTILITY FUNCTIONS FOR QUICK VIEW ====================
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(price);
+        }
+
+        function getProductImage(category) {
+            const imageMap = {
+                'Lichsu': 'img/su' + (Math.floor(Math.random() * 30) + 1) + '.jfif',
+                'Tongiao': 'img/tg' + (Math.floor(Math.random() * 15) + 1) + '.jfif',
+                'Tamly': 'img/tl' + (Math.floor(Math.random() * 30) + 1) + '.png',
+                'Vanhoc': 'img/vh' + (Math.floor(Math.random() * 15) + 1) + '.jfif',
+                'Thieunhi': 'img/tn' + (Math.floor(Math.random() * 15) + 1) + '.jfif'
+            };
+
+            return imageMap[category] || 'img/book1.webp';
+        }
+
+        // ==================== QUICK VIEW ====================
+        function renderQuickViewPrice(product) {
+    const price = parseInt(product.gia);
+    const discount = parseFloat(product.giamgia) || 0;
+    
+    if (discount > 0) {
+        const discountedPrice = Math.round(price * (1 - discount));
+        const discountPercent = Math.round(discount * 100);
+        
+        return `
+            <div class="qv-price-container">
+                <div class="qv-original-price">${formatPrice(price)}</div>
+                <div class="qv-discounted-price">${formatPrice(discountedPrice)}</div>
+                <div class="qv-discount-badge">-${discountPercent}%</div>
+            </div>
+        `;
+    } else {
+        return `<div class="qv-price">Giá: ${formatPrice(price)}</div>`;
+    }
+}
+        function ensureQuickViewRoot() {
+            let root = document.querySelector('.qv-overlay');
+            if (root) return root;
+            root = document.createElement('div');
+            root.className = 'qv-overlay';
+            document.body.appendChild(root);
+            return root;
+        }
+
+      async function openQuickViewFromCard(card) {
+        fetchCategories();
+    const productId = card.dataset.productId;
+    if (!productId) {
+        console.error('Product ID not found');
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost/web2/controller/product.php?masp=${productId}`);
+        const data = await response.json();
+
+        if (!data.success) {
+            console.error('Failed to fetch product details:', data.message);
+            return;
+        }
+
+        const product = data.data;
+        const imageUrl = product.link;
+
+        // ================= ĐOẠN THAY ĐỔI Ở ĐÂY =================
+        // Sử dụng biến toàn cục categoryMapping đã được fetch từ danhmuc.php
+        // Nếu không tìm thấy mã danh mục, sẽ hiển thị chính mã đó (fallback)
+        const danhmucTen = categoryMapping[product.danhmuc] || product.danhmuc;
+        // =====================================================
+
+        const root = ensureQuickViewRoot();
+        root.innerHTML = `
+      <div class="qv-card" role="dialog" aria-modal="true" aria-label="Xem nhanh sản phẩm">
+        <button class="qv-close" aria-label="Đóng">✖</button>
+        <div class="qv-body">
+          <div class="qv-img">
+            <img src="${imageUrl}" alt="${product.tensp}" onerror="this.src='img/default-book.jpg'">
+          </div>
+          <div class="qv-content">
+            <h2 class="qv-title">${product.tensp}</h2>
+            ${renderQuickViewPrice(product)}
+            <div class="qv-desc">${product.mota || 'Chưa có mô tả cho sản phẩm này.'}</div>
+            
+            <div class="qv-meta-container">
+              <div class="qv-meta-item">
+                <i class="fas fa-user"></i>
+                <span>Tác giả: <em>${product.tacgia}</em></span>
+              </div>
+              <div class="qv-meta-item">
+                <i class="fas fa-book"></i>
+                <span>Thể loại: <em>${danhmucTen}</em></span>
+                
+              </div>
+              
+              <div class="qv-button-grid">
+                <button class="qv-add" onclick="addToCart('${productId}'); event.stopPropagation();">
+                  <i class="fa fa-shopping-cart"></i>
+                  <span>Thêm vào giỏ</span>
+                </button>
+                <button class="qv-buy-now" onclick="openBuyNowModal('${productId}'); event.stopPropagation();">
+                  <i class="fas fa-bolt"></i>
+                  <span>Mua ngay</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+        root.style.display = 'flex';
+
+        // Logic đóng Modal
+        const close = () => { 
+            root.style.display = 'none'; 
+            root.innerHTML = ''; 
+        };
+        
+        root.addEventListener('click', (e) => { 
+            if (e.target === root) close(); 
+        });
+        
+        root.querySelector('.qv-close').addEventListener('click', close);
+        
+        const onEsc = (e) => { 
+            if (e.key === 'Escape') { 
+                close(); 
+                document.removeEventListener('keydown', onEsc); 
+            } 
+        };
+        
+        document.addEventListener('keydown', onEsc);
+
+    } catch (error) {
+        console.error('Error fetching product details:', error);
+    }
+}
+        function toggleMoreInfo(element) {
+    const tooltip = element.nextElementSibling;
+    const icon = element.querySelector('i');
+    
+    if (tooltip.style.display === 'none' || !tooltip.style.display) {
+        tooltip.style.display = 'block';
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+        element.style.fontWeight = '600';
+    } else {
+        tooltip.style.display = 'none';
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+        element.style.fontWeight = '500';
+    }
+}
+
+        // Xử lý click vào toàn bộ sản phẩm (trừ các nút giỏ hàng và xem chi tiết)
+        // Xử lý click vào toàn bộ sản phẩm (trừ các nút giỏ hàng, xem chi tiết VÀ MUA NGAY)
+document.addEventListener('click', function (e) {
+    // Kiểm tra nếu click vào nút giỏ hàng hoặc xem chi tiết hoặc mua ngay thì không làm gì
+    if (e.target.closest('.add-cart') || e.target.closest('.view-detail') || e.target.closest('.buy-now')) {
+        return;
+    }
+
+    // Kiểm tra nếu click vào sản phẩm
+    const productItem = e.target.closest('.new-product-item, .category-product-item');
+    if (!productItem) return;
+
+    e.preventDefault();
+    openQuickViewFromCard(productItem);
+});
+
+        // Xử lý click vào nút xem chi tiết (mắt)
+        document.addEventListener('click', function (e) {
+            const viewBtn = e.target.closest('.view-detail');
+            if (!viewBtn) return;
+            e.preventDefault();
+            e.stopPropagation(); // Ngăn sự kiện lan ra sản phẩm cha
+            const card = viewBtn.closest('.category-product-item, .new-product-item');
+            if (!card) return;
+            openQuickViewFromCard(card);
+        });
+
+        ensureQuickViewRoot();
+    </script>
+    <script src="js/index/searchnangcao.js"></script>
+    <script src="js/index/muangay.js"></script>
+</body>
+
+</html>

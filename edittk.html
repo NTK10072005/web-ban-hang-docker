@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <title>Chỉnh Sửa Thông Tin - BOOK STORE</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Favicon -->
+  <link href="img/tieude.jpg" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+  <!-- CSS Libraries -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="lib/slick/slick.css" rel="stylesheet">
+  <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/fix.css" rel="stylesheet">
+  <link href="css/edittk.css" rel="stylesheet">
+
+  
+</head>
+
+<body>
+  <!-- Header Start -->
+  <div class="nav">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav mr-auto">
+            <a href="index.html" class="nav-item nav-link">Trang chủ</a>
+          </div>
+          <div class="navbar-nav ml-auto">
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> &nbsp;Huynh Duc</a>
+              <div class="dropdown-menu">
+                <a href="thongtintaikhoan.html" class="dropdown-item"><i class="fa fa-id-card me-2"></i>  &nbsp;Thông tin</a>
+                <a href="lichsumuahang.html" class="dropdown-item"><i class="fa fa-history me-2"></i>&nbsp;Lịch sử mua hàng</a>
+                <a href="login.html" class="dropdown-item"><i class="fa fa-sign-out-alt me-2"></i>&nbsp;Đăng xuất</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <div class="logo">
+            <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="search-container">
+            <div class="search">
+              <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm">
+              <button id="searchBtn"><i class="fa fa-search"></i></button>
+            </div>
+           
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="user">
+            <a href="cart.html" class="btn cart"><i class="fa fa-shopping-cart"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap">
+    <div class="container-fluid">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="thongtintaikhoan.html">Tài khoản</a></li>
+        <li class="breadcrumb-item active">Chỉnh sửa thông tin</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Breadcrumb End -->
+
+  <!-- Edit Account Start -->
+  <div class="my-account">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="edit-form-container">
+            <form id="editAccountForm" novalidate>
+              <h2 class="section-title">Chỉnh Sửa Thông Tin Tài Khoản</h2>
+              <div class="form-group">
+                <label for="fullName">Họ và tên</label>
+                <input type="text" class="form-control" id="fullName" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" required>
+                <small class="form-text text-muted">Email này sẽ được sử dụng để đăng nhập và nhận thông báo</small>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" class="form-control" id="phone" required>
+              </div>
+
+              <div class="address-group">
+                <label>Địa chỉ</label>
+                <div class="form-group">
+                  <label for="streetAddress">Số nhà & Tên đường</label>
+                  <input type="text" class="form-control" id="streetAddress"
+                          placeholder="VD: 123 Đường Mai Chí Thọ" required>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="district">Phường/Xã</label>
+                    <select class="form-control" id="district" name="district" required>
+                      <option value="">Chọn Phường/Xã</option>
+                      <option value="Phường 1">Phường 1</option>
+                      <option value="Phường 2">Phường 2</option>
+                      <option value="Phường 3">Phường 3</option>
+                      <option value="Phường 4">Phường 4</option>
+                      <option value="Phường 5">Phường 5</option>
+                      <option value="Phường 6">Phường 6</option>
+                      <option value="Phường 7">Phường 7</option>
+                      <option value="Phường 8">Phường 8</option>
+                      <option value="Phường 9">Phường 9</option>
+                      <option value="Phường 10">Phường 10</option>
+                      <option value="Phường 11">Phường 11</option>
+                      <option value="Phường 12">Phường 12</option>
+                      <option value="Phường 13">Phường 13</option>
+                      <option value="Phường 14">Phường 14</option>
+                      <option value="Phường 15">Phường 15</option>
+                      <option value="Phường 16">Phường 16</option>
+                      <option value="Phường 17">Phường 17</option>
+                      <option value="Phường 18">Phường 18</option>
+                      <option value="Phường 19">Phường 19</option>
+                      <option value="Phường 20">Phường 20</option>
+                      <option value="Phường An Khánh">Phường An Khánh</option>
+                      <option value="Phường An Lợi Đông">Phường An Lợi Đông</option>
+                      <option value="Phường An Phú">Phường An Phú</option>
+                      <option value="Phường Bình An">Phường Bình An</option>
+                      <option value="Phường Bình Khánh">Phường Bình Khánh</option>
+                      <option value="Phường Bình Trưng Đông">Phường Bình Trưng Đông</option>
+                      <option value="Phường Bình Trưng Tây">Phường Bình Trưng Tây</option>
+                      <option value="Phường Cát Lái">Phường Cát Lái</option>
+                      <option value="Phường Long Bình">Phường Long Bình</option>
+                      <option value="Phường Long Phước">Phường Long Phước</option>
+                      <option value="Phường Long Thạnh Mỹ">Phường Long Thạnh Mỹ</option>
+                      <option value="Phường Long Trường">Phường Long Trường</option>
+                      <option value="Phường Phú Hữu">Phường Phú Hữu</option>
+                      <option value="Phường Phước Bình">Phường Phước Bình</option>
+                      <option value="Phường Phước Long A">Phường Phước Long A</option>
+                      <option value="Phường Phước Long B">Phường Phước Long B</option>
+                      <option value="Phường Tân Hưng">Phường Tân Hưng</option>
+                      <option value="Phường Tân Kiểng">Phường Tân Kiểng</option>
+                      <option value="Phường Tân Phong">Phường Tân Phong</option>
+                      <option value="Phường Tân Phú">Phường Tân Phú</option>
+                      <option value="Phường Tân Quy">Phường Tân Quy</option>
+                      <option value="Phường Tân Thuận Đông">Phường Tân Thuận Đông</option>
+                      <option value="Phường Tân Thuận Tây">Phường Tân Thuận Tây</option>
+                      <option value="Phường Thảo Điền">Phường Thảo Điền</option>
+                      <option value="Phường Chợ Quán">Phường Chợ Quán</option>
+
+                      <option value="Phường Thủ Thiêm">Phường Thủ Thiêm</option>
+                      <option value="Phường Trường Thạnh">Phường Trường Thạnh</option>
+                      <option value="Xã Bình Chánh">Xã Bình Chánh</option>
+                      <option value="Xã Cần Thạnh">Xã Cần Thạnh</option>
+                      <option value="Xã Long Hòa">Xã Long Hòa</option>
+                      <option value="Xã Lý Nhơn">Xã Lý Nhơn</option>
+                      <option value="Xã Nhơn Đức">Xã Nhơn Đức</option>
+                      <option value="Xã Phú Xuân">Xã Phú Xuân</option>
+                      <option value="Xã Vĩnh Lộc A">Xã Vĩnh Lộc A</option>
+                      <option value="Xã Vĩnh Lộc B">Xã Vĩnh Lộc B</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="city">Tỉnh/Thành phố</label>
+                    <select class="form-control" id="city" name="city" required>
+                      <option value="">Chọn Thành phố</option>
+                      <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                      <option value="Hà Nội">Hà Nội</option>
+                      <option value="Đà Nẵng">Đà Nẵng</option>
+                      <option value="Cần Thơ">Cần Thơ</option>
+                      <option value="Hải Phòng">Hải Phòng</option>
+                      <option value="Nha Trang">Nha Trang</option>
+                      <option value="Đà Lạt">Đà Lạt</option>
+                      <option value="Vũng Tàu">Vũng Tàu</option>
+                      <option value="Huế">Huế</option>
+                      <option value="Buôn Ma Thuột">Buôn Ma Thuột</option>
+                      <option value="Vinh">Vinh</option>
+                      <option value="Quy Nhơn">Quy Nhơn</option>
+                      <option value="Long Xuyên">Long Xuyên</option>
+                      <option value="Thái Nguyên">Thái Nguyên</option>
+                      <option value="Nam Định">Nam Định</option>
+                      <option value="Rạch Giá">Rạch Giá</option>
+                      <option value="Thái Bình">Thái Bình</option>
+                      <option value="Thanh Hóa">Thanh Hóa</option>
+                      <option value="Hạ Long">Hạ Long</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            
+
+              <div class="password-section">
+                <h5>Thay đổi mật khẩu (tùy chọn)</h5>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="newPassword">Mật khẩu mới</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="Mật khẩu mới">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="confirmPassword">Xác nhận mật khẩu mới</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Xác nhận mật khẩu mới">
+                  </div>
+                </div>
+                <small class="form-text text-muted">Để trống nếu không muốn thay đổi mật khẩu</small>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-secondary-custom" id="btnCancel">
+                  <i class="fas fa-times"></i> Hủy bỏ
+                </button>
+                <button type="submit" class="btn btn-edit">
+                  <i class="fas fa-save"></i> Lưu thay đổi
+                </button>
+              </div>
+            </form>
+          </div> <!-- /edit-form-container -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Edit Account End -->
+
+  <!-- Footer Start -->
+  <div class="footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-widget">
+            <h2>Liên hệ</h2>
+            <div class="contact-info">
+              <p><i class="fa fa-map-marker"></i>273 An Dương Vương Phường 3 Quận 5 TPHCM</p>
+              <p><i class="fa fa-envelope"></i>info@example.com</p>
+              <p><i class="fa fa-phone"></i>+012-345-67890</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-widget">
+            <h2>Theo dõi chúng tôi</h2>
+            <div class="contact-info">
+              <div class="social">
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-widget">
+            <h2>Thông tin công ty</h2>
+            <ul>
+              <li><a href="#">Về chúng tôi</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Điều khoản & Điều kiện</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-widget">
+            <h2>Thông tin mua hàng</h2>
+            <ul>
+              <li><a href="#">Chính sách thanh toán</a></li>
+              <li><a href="#">Chính sách vận chuyển</a></li>
+              <li><a href="#">Chính sách đổi trả</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row payment align-items-center">
+        <div class="col-md-6">
+          <div class="payment-method">
+            <h2>Chúng tôi chấp nhận:</h2>
+            <img src="img/payment-method.png" alt="Payment Method" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="payment-security">
+            <h2>Được bảo mật bởi:</h2>
+            <img src="img/godaddy.svg" alt="Payment Security" />
+            <img src="img/norton.svg" alt="Payment Security" />
+            <img src="img/ssl.svg" alt="Payment Security" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+
+  <!-- Form tìm kiếm nâng cao -->
+<div id="advancedSearchModal" class="advanced-search-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tìm kiếm nâng cao</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="advancedSearchForm">
+                    <div class="form-group">
+                        <label>Tên sản phẩm:</label>
+                        <input id="tensp" type="text" name="keyword" placeholder="Nhập tên sản phẩm tìm kiếm...">
+                    </div>
+
+                  <div class="form-group">
+    <label>Danh mục:</label>
+    <!-- Thêm id="advancedCategorySelect" -->
+    <select name="category" id="advancedCategorySelect">
+        <option value="">Tất cả</option>
+        <!-- Các option khác sẽ được load từ API -->
+    </select>
+</div>
+
+                    <div class="form-group">
+                        <label>Khoảng giá:</label>
+                        <div class="price-range">
+                            <input type="text" name="minPrice" placeholder="Từ">
+                            <span>-</span>
+                            <input type="text" name="maxPrice" placeholder="Đến">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                                              <button id="search" type="submit" class="btn-search">Tìm kiếm</button>
+
+                        <button type="button" class="btn-reset">Đặt lại</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/slick/slick.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+   <script src="js/edittk/search.js"></script>
+ <script src="js/edittk/xuly.js"></script>
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Gọi hàm load danh mục ngay khi trang web tải xong
+    loadCategoriesToSearchModal();
+});
+
+async function loadCategoriesToSearchModal() {
+    const categorySelect = document.getElementById('advancedCategorySelect');
+    
+    // Đường dẫn API của bạn (thay đổi cho đúng với project của bạn)
+    const apiUrl = 'http://localhost/web2/controller/danhmuc.php?action=alladmin'; 
+
+    try {
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+
+        if (result.success && result.data) {
+            // Giữ lại option mặc định ban đầu (Tất cả)
+            let html = '<option value="">Tất cả</option>';
+
+            // Lặp qua mảng data trả về từ API
+            result.data.forEach(item => {
+                // value là madm, nội dung hiển thị là tendm
+                html += `<option value="${item.madm}">${item.tendm}</option>`;
+            });
+
+            // Gán lại nội dung HTML cho thẻ select
+            categorySelect.innerHTML = html;
+        }
+    } catch (error) {
+        console.error('Lỗi khi gọi API danh mục:', error);
+    }
+}
+</script>
+</body>
+</html>

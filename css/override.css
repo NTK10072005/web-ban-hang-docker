@@ -1,0 +1,125 @@
+/* Override styles for product action buttons */
+html body .product-action a,
+html body .product-item .product-image .product-action a,
+html body .alert-btn,
+html body a[class*="fa-cart-plus"],
+html body a[class*="fa-search"],
+html body .product-item .product-action a {
+    color: #ffffff !important;
+    background: #FF6F61 !important;
+    border: 1px solid #FF6F61 !important;
+    display: inline-block !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 5px !important;
+    padding: 7px 0 !important;
+    text-align: center !important;
+    border-radius: 4px !important;
+    transition: all .3s !important;
+}
+
+html body .product-action a:hover,
+html body .product-item .product-image .product-action a:hover,
+html body .alert-btn:hover,
+html body a[class*="fa-cart-plus"]:hover,
+html body a[class*="fa-search"]:hover,
+html body .product-item .product-action a:hover {
+    background: #ffffff !important;
+    color: #FF6F61 !important;
+    border: 1px solid #FF6F61 !important;
+}
+
+/* Override for product-action background */
+html body .product-item .product-image .product-action {
+    background: rgba(0, 0, 0, 0) !important;
+}
+
+/* Override for buy now button */
+html body .product-price .btn,
+html body .buy-now-btn {
+    display: inline-block !important;
+    text-align: center !important;
+    width: auto !important;
+    min-width: 100px !important;
+    margin: 0 !important;
+    padding: 8px 15px !important;
+    background-color: #ff6f61 !important;
+    color: #fff !important;
+    border-radius: 25px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: all 0.3s !important;
+    border: 2px solid #ff6f61 !important;
+}
+
+html body .product-price .btn:hover,
+html body .buy-now-btn:hover {
+    color: #ff6f61 !important;
+    background-color: #fff !important;
+}
+
+/* Override for add-to-cart button */
+html body .add-to-cart,
+html body a.add-to-cart {
+    color: #ffffff !important;
+    background: #FF6F61 !important;
+    border: 1px solid #FF6F61 !important;
+    display: inline-block !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 5px !important;
+    padding: 7px 0 !important;
+    text-align: center !important;
+    border-radius: 4px !important;
+    transition: all .3s !important;
+}
+
+html body .add-to-cart:hover,
+html body a.add-to-cart:hover {
+    background: #ffffff !important;
+    color: #FF6F61 !important;
+    border: 1px solid #FF6F61 !important;
+}
+
+/* Force override for any inline styles */
+html body [class*="fa-cart-plus"],
+html body [class*="fa-search"],
+html body .alert-btn i,
+html body .product-action i {
+    color: inherit !important;
+    background: transparent !important;
+}
+
+/* Override for product price spacing */
+html body .product-price h3,
+html body .product-item .product-price h3 {
+    margin-right: 15px !important;
+}
+
+/* Override for product detail action buttons */
+html body .product-detail .product-content .action a.alert-btn {
+    display: inline-block !important;
+    width: auto !important;
+    min-width: 250px !important;
+    height: auto !important;
+    padding: 8px 15px !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+}
+
+/* Override placeholder text styling - maximum specificity */
+html body .form-group input.form-control::placeholder,
+html body .edit-form-container .form-group input.form-control::placeholder,
+html body .my-account .form-group input.form-control::placeholder,
+html body div[class*="form-group"] input.form-control::placeholder {
+    font-weight: normal !important;
+    color: #000 !important;
+    opacity: 1 !important;
+}
+
+/* Additional override for any Bootstrap placeholder styling */
+input.form-control::placeholder {
+    font-weight: normal !important;
+    color: #000 !important;
+    opacity: 1 !important;
+}
