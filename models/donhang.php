@@ -61,15 +61,16 @@ class Donhang {
             // 2. Thêm chi tiết đơn hàng
             foreach ($this->chitiet as $item) {
                 $query_chitiet = "INSERT INTO " . $this->table_name_chitiet . " 
-                                 (madh, masp, soluong,giamgia) 
-                                 VALUES (?, ?, ?,?)";
+                                 (madh, masp, soluong,giamgia,gia) 
+                                 VALUES (?, ?, ?,?,?)";
                 
                 $stmt_chitiet = $this->conn->prepare($query_chitiet);
                 
                 $masp = (int)$item['masp'];
                 $soluong = (int)$item['soluong'];
                 $giamgia = isset($item['giamgia']) ? (float)$item['giamgia'] : 0;
-                $stmt_chitiet->bind_param("iiid", $this->madh, $masp, $soluong, $giamgia);
+                $gia = isset($item['gia']) ? (int)$item['gia'] : 0;
+                $stmt_chitiet->bind_param("iiidi", $this->madh, $masp, $soluong, $giamgia, $gia);
                 
                 if (!$stmt_chitiet->execute()) {
                     throw new Exception("Không thể thêm chi tiết đơn hàng: " . $stmt_chitiet->error);
@@ -289,8 +290,8 @@ public function timKiemDonhangTheoNgayVaTrangThai($tungay = null, $denngay = nul
         try {
             $query = "SELECT 
                          ctdh.masp, ctdh.soluong, ctdh.giamgia*100 as giamgia,
-                         sp.tensp, sp.gia, sp.link,
-                         (ctdh.soluong * sp.gia*(1-ctdh.giamgia)) as thanhtien
+                         sp.tensp, ctdh.gia, sp.link,
+                         (ctdh.soluong * ctdh.gia*(1-ctdh.giamgia)) as thanhtien
                      FROM " . $this->table_name_chitiet . " ctdh
                      LEFT JOIN sanpham sp ON ctdh.masp = sp.masp
                      WHERE ctdh.madh = ?";

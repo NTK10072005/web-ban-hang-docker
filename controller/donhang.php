@@ -285,7 +285,8 @@ function handleThemDonhang($data) {
             $chitiet[] = array(
                 'masp' => (int)$item['masp'],
                 'soluong' => (int)$item['soluong'],
-                'giamgia' => isset($item['giamgia']) ? (float)$item['giamgia'] : 0
+                'giamgia' => isset($item['giamgia']) ? (float)$item['giamgia'] : 0,
+                'gia' => isset($item['gia']) ? (int)$item['gia'] : 0
             );
         }
     }

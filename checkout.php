@@ -1947,7 +1947,8 @@ function createOrderData() {
     const chitiet = cartItems.map(item => ({
         masp: parseInt(item.masp),
         soluong: parseInt(item.soluong),
-        giamgia: parseFloat(item.giamgia)
+        giamgia: parseFloat(item.giamgia),
+        gia: parseInt(item.gia)
     }));
         const trangthaidons = paymentMethod === 'COD' ? 2 : 0;
 
