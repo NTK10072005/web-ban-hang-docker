@@ -122,8 +122,8 @@ LIMIT 1";
     // Tạo sản phẩm mới
     public function create() {
         $query = "INSERT INTO " . $this->table_name . "
-                (tensp, tacgia, danhmuc,mota, link, trangthai)
-                VALUES (?, ?, ?, ?,?,?)";
+                (tensp, tacgia, danhmuc,mota, link, trangthai, nxb, namxb, sotrang, ngonngu, kichthuoc, trongluong, loaibia)
+                VALUES (?, ?, ?, ?,?,?,?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $this->conn->prepare($query);
         
@@ -134,16 +134,31 @@ LIMIT 1";
         $this->mota = htmlspecialchars(strip_tags($this->mota));
         $this->link = htmlspecialchars(strip_tags($this->link));
         $this->trangthai = htmlspecialchars(strip_tags($this->trangthai));
+        $this->nxb = htmlspecialchars(strip_tags($this->nxb));
+        $this->namxb = htmlspecialchars(strip_tags($this->namxb));
+        $this->sotrang = htmlspecialchars(strip_tags($this->sotrang));
+        $this->ngonngu = htmlspecialchars(strip_tags($this->ngonngu));
+        $this->kichthuoc = htmlspecialchars(strip_tags($this->kichthuoc));
+        $this->trongluong = htmlspecialchars(strip_tags($this->trongluong));
+        $this->hinhthuc = htmlspecialchars(strip_tags($this->hinhthuc));
         
         // Bind parameters
         $stmt->bind_param(
-            "ssssss",
+            "sssssssddssss",
             $this->tensp,
             $this->tacgia,
             $this->danhmuc,
             $this->mota,
             $this->link,
             $this->trangthai
+            ,$this->nxb,
+            $this->namxb,
+            $this->sotrang,
+            $this->ngonngu,
+            $this->kichthuoc,
+            $this->trongluong,
+            $this->hinhthuc
+
         );
         
         if ($stmt->execute()) {
@@ -161,7 +176,14 @@ LIMIT 1";
                     danhmuc = ?,
                     mota = ?,
                     trangthai = ?,
-                    link=?
+                    link=?,
+                    nxb = ?,
+                    namxb = ?,
+                    sotrang = ?,
+                    ngonngu = ?,
+                    kichthuoc = ?,
+                    trongluong = ?,
+                    loaibia = ?
                 WHERE
                     masp = ?";
         
@@ -176,16 +198,31 @@ LIMIT 1";
         $this->link = htmlspecialchars(strip_tags($this->link));
         $this->trangthai = htmlspecialchars(strip_tags($this->trangthai));
         $this->masp = htmlspecialchars(strip_tags($this->masp));
-        
+        $this->nxb = htmlspecialchars(strip_tags($this->nxb));
+        $this->namxb = htmlspecialchars(strip_tags($this->namxb));
+        $this->sotrang = htmlspecialchars(strip_tags($this->sotrang));
+        $this->ngonngu = htmlspecialchars(strip_tags($this->ngonngu));
+        $this->kichthuoc = htmlspecialchars(strip_tags($this->kichthuoc));
+        $this->trongluong = htmlspecialchars(strip_tags($this->trongluong));
+        $this->hinhthuc = htmlspecialchars(strip_tags($this->hinhthuc));
+
+
         // Bind parameters
         $stmt->bind_param(
-            "ssssisi",
+            "ssssissiissssi",
             $this->tensp,
             $this->tacgia,
             $this->danhmuc,
             $this->mota,
             $this->trangthai,
             $this->link,
+            $this->nxb,
+            $this->namxb,
+            $this->sotrang,
+            $this->ngonngu,
+            $this->kichthuoc,
+            $this->trongluong,
+            $this->hinhthuc,
             $this->masp
 
         );

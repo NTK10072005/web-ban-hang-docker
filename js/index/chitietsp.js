@@ -72,7 +72,16 @@
         // Nếu không tìm thấy mã danh mục, sẽ hiển thị chính mã đó (fallback)
         const danhmucTen = categoryMapping[product.danhmuc] || product.danhmuc;
         // =====================================================
-
+        const detailedInfo = {
+            'Nhà xuất bản': product.nhaxuatban || 'Đang cập nhật',
+            'Năm xuất bản': product.namxuatban || 'Đang cập nhật',
+            'Số trang': product.sotrang || 'Đang cập nhật',
+            'Ngôn ngữ': product.ngonngu || 'Tiếng Việt',
+            'Kích thước': product.kichthuoc || 'Đang cập nhật',
+            'Trọng lượng': product.trongluong || 'Đang cập nhật',
+            'ISBN': product.isbn || '388053101-3',
+            'Hình thức bìa': product.loaibia || 'Bìa mềm'
+        };
         const root = ensureQuickViewRoot();
         root.innerHTML = `
       <div class="qv-card" role="dialog" aria-modal="true" aria-label="Xem nhanh sản phẩm">
@@ -96,7 +105,24 @@
                 <span>Thể loại: <em>${danhmucTen}</em></span>
                 
               </div>
-              
+                <!-- Phần Xem thêm với tooltip hover -->
+              <div class="qv-more-info">
+                <a href="javascript:void(0)" 
+                   class="view-more-link">
+                  <i class="fas fa-info-circle"></i>
+                  Xem thêm
+                </a>
+                <div class="more-info-tooltip" 
+                     style="position: absolute !important; bottom: 100% !important; left: 50% !important; transform: translateX(-50%) !important; z-index: 10000 !important; display: none; margin-bottom: 12px !important; padding: 15px !important; background: white !important; border-radius: 8px !important; border: 1px solid #e0e0e0 !important; font-size: 13px !important; width: 280px !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; animation: fadeInTooltip 0.2s ease !important; box-sizing: border-box !important;">
+                  <div style="font-weight: 600; color: #333; margin-bottom: 10px; font-size: 14px;">Thông tin chi tiết:</div>
+                  ${Object.entries(detailedInfo).map(([key, value]) => `
+                    <div style="display: flex; margin-bottom: 6px; padding-bottom: 5px; border-bottom: 1px solid #f0f0f0;">
+                      <span style="min-width: 100px; color: #666; font-weight: 500;">${key}:</span>
+                      <span style="color: #333; flex: 1; text-align: right;">${value}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
               <div class="qv-button-grid">
                 <button class="qv-add" onclick="addToCart('${productId}'); event.stopPropagation();">
                   <i class="fa fa-shopping-cart"></i>
@@ -114,6 +140,40 @@
     `;
 
         root.style.display = 'flex';
+// Thêm JavaScript cho hover tooltip
+        const moreInfoElement = root.querySelector('.qv-more-info');
+        const tooltip = root.querySelector('.more-info-tooltip');
+        
+        // Hover trên cả container hoặc link đều hiển thị tooltip
+        moreInfoElement.addEventListener('mouseenter', (e) => {
+            e.stopPropagation();
+            // Sử dụng setProperty với important
+            tooltip.style.setProperty('display', 'block', 'important');
+        });
+        
+        moreInfoElement.addEventListener('mouseleave', (e) => {
+            e.stopPropagation();
+            // Sử dụng setTimeout để tránh flicker
+            setTimeout(() => {
+                if (!moreInfoElement.matches(':hover') && !tooltip.matches(':hover')) {
+                    tooltip.style.setProperty('display', 'none', 'important');
+                }
+            }, 100);
+        });
+        
+        tooltip.addEventListener('mouseenter', (e) => {
+            e.stopPropagation();
+            tooltip.style.setProperty('display', 'block', 'important');
+        });
+        
+        tooltip.addEventListener('mouseleave', (e) => {
+            e.stopPropagation();
+            setTimeout(() => {
+                if (!moreInfoElement.matches(':hover') && !tooltip.matches(':hover')) {
+                    tooltip.style.setProperty('display', 'none', 'important');
+                }
+            }, 100);
+        });
 
         // Logic đóng Modal
         const close = () => { 

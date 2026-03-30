@@ -66,26 +66,31 @@
         }
 
         /* Quick View Modal */
-        .qv-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-        .qv-card {
-            background: #fff;
-            border-radius: 14px;
-            max-width: 980px;
-            width: calc(100% - 32px);
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
-            padding: 28px;
-        }
+       .qv-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: flex-start; /* Để modal nằm từ trên xuống giúp dễ cuộn */
+    justify-content: center;
+    z-index: 2000;
+    overflow-y: auto;        /* Kích hoạt cuộn cho toàn bộ màn hình */
+    padding: 40px 0;         /* Tạo khoảng cách để modal không dính mép màn hình */
+}
+
+/* 2. Hộp thoại trắng: Phải để overflow là visible */
+.qv-card {
+    background: #fff;
+    border-radius: 14px;
+    max-width: 980px;
+    width: calc(100% - 32px);
+    position: relative;
+    padding: 28px;
+    margin-top: 20px;
+    /* QUAN TRỌNG: Bỏ max-height và overflow cũ, thay bằng cái này */
+    max-height: none !important; 
+    overflow: visible !important; 
+}
         .qv-close {
             position: absolute;
             top: 12px;
@@ -395,6 +400,7 @@
 .product-grid {
     margin-top: 0 !important;
 }
+
     </style>
 </head>
 
@@ -800,6 +806,7 @@
                 console.error('Lỗi khi tải danh mục:', error);
             }
         }
+         
 
         // ==================== UTILITY FUNCTIONS FOR QUICK VIEW ====================
         function formatPrice(price) {
@@ -851,7 +858,16 @@
                 const product = data.data;
                 const imageUrl = product.link || 'img/default-book.jpg';
                 const danhmucTen = categoryMapping[product.danhmuc] || product.danhmuc;
-
+                const detailedInfo = {
+            'Nhà xuất bản': product.nhaxuatban || 'Đang cập nhật',
+            'Năm xuất bản': product.namxuatban || 'Đang cập nhật',
+            'Số trang': product.sotrang || 'Đang cập nhật',
+            'Ngôn ngữ': product.ngonngu || 'Tiếng Việt',
+            'Kích thước': product.kichthuoc || 'Đang cập nhật',
+            'Trọng lượng': product.trongluong || 'Đang cập nhật',
+            'ISBN': product.isbn || '388053101-3',
+            'Hình thức bìa': product.loaibia || 'Bìa mềm'
+        };
                 const root = ensureQuickViewRoot();
                 root.innerHTML = `
                     <div class="qv-card" role="dialog" aria-modal="true" aria-label="Xem nhanh sản phẩm">
@@ -873,6 +889,24 @@
                                         <i class="fas fa-book"></i>
                                         <span>Thể loại: <em>${danhmucTen}</em></span>
                                     </div>
+                                      <!-- Phần Xem thêm với tooltip hover -->
+              <div class="qv-more-info">
+                <a href="javascript:void(0)" 
+                   class="view-more-link">
+                  <i class="fas fa-info-circle"></i>
+                  Xem thêm
+                </a>
+                <div class="more-info-tooltip" 
+                     style="position: absolute !important; bottom: 100% !important; left: 50% !important; transform: translateX(-50%) !important; z-index: 10000 !important; display: none; margin-bottom: 12px !important; padding: 15px !important; background: white !important; border-radius: 8px !important; border: 1px solid #e0e0e0 !important; font-size: 13px !important; width: 280px !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; animation: fadeInTooltip 0.2s ease !important; box-sizing: border-box !important;">
+                  <div style="font-weight: 600; color: #333; margin-bottom: 10px; font-size: 14px;">Thông tin chi tiết:</div>
+                  ${Object.entries(detailedInfo).map(([key, value]) => `
+                    <div style="display: flex; margin-bottom: 6px; padding-bottom: 5px; border-bottom: 1px solid #f0f0f0;">
+                      <span style="min-width: 100px; color: #666; font-weight: 500;">${key}:</span>
+                      <span style="color: #333; flex: 1; text-align: right;">${value}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
                                     <div class="qv-button-grid">
                                         <button class="qv-add" onclick="addToCart('${productId}'); event.stopPropagation();">
                                             <i class="fa fa-shopping-cart"></i>
@@ -890,6 +924,39 @@
                 `;
 
                 root.style.display = 'flex';
+                const moreInfoElement = root.querySelector('.qv-more-info');
+        const tooltip = root.querySelector('.more-info-tooltip');
+        
+        // Hover trên cả container hoặc link đều hiển thị tooltip
+        moreInfoElement.addEventListener('mouseenter', (e) => {
+            e.stopPropagation();
+            // Sử dụng setProperty với important
+            tooltip.style.setProperty('display', 'block', 'important');
+        });
+        
+        moreInfoElement.addEventListener('mouseleave', (e) => {
+            e.stopPropagation();
+            // Sử dụng setTimeout để tránh flicker
+            setTimeout(() => {
+                if (!moreInfoElement.matches(':hover') && !tooltip.matches(':hover')) {
+                    tooltip.style.setProperty('display', 'none', 'important');
+                }
+            }, 100);
+        });
+        
+        tooltip.addEventListener('mouseenter', (e) => {
+            e.stopPropagation();
+            tooltip.style.setProperty('display', 'block', 'important');
+        });
+        
+        tooltip.addEventListener('mouseleave', (e) => {
+            e.stopPropagation();
+            setTimeout(() => {
+                if (!moreInfoElement.matches(':hover') && !tooltip.matches(':hover')) {
+                    tooltip.style.setProperty('display', 'none', 'important');
+                }
+            }, 100);
+        });
 
                 const close = () => {
                     root.style.display = 'none';

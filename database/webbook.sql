@@ -3,12 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 01, 2026 lúc 02:06 PM
+-- Thời gian đã tạo: Th3 29, 2026 lúc 07:29 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
-DROP DATABASE IF EXISTS `web2`;
-CREATE DATABASE `web2`;
-USE `web2`;
+DROP DATABASE IF EXISTS `webbook`;
+CREATE DATABASE `tmdt`;
+USE `tmdt`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,114 +34,125 @@ CREATE TABLE `chitietdonhang` (
   `madh` int(11) NOT NULL,
   `masp` int(11) NOT NULL,
   `soluong` int(11) NOT NULL,
-  `giamgia` double NOT NULL DEFAULT 0
+  `giamgia` double NOT NULL DEFAULT 0,
+  `gia` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `chitietdonhang`
 --
 
-INSERT INTO `chitietdonhang` (`madh`, `masp`, `soluong`, `giamgia`) VALUES
-(1, 13, 2, 0),
-(1, 14, 1, 0),
-(1, 15, 3, 0),
-(2, 13, 2, 0),
-(2, 14, 1, 0),
-(2, 15, 3, 0),
-(3, 2, 1, 0),
-(4, 106, 1, 0),
-(5, 113, 2, 0),
-(6, 112, 1, 0),
-(7, 109, 3, 0),
-(7, 111, 9, 0),
-(8, 99, 1, 0),
-(8, 110, 2, 0),
-(9, 113, 2, 0),
-(10, 111, 1, 0),
-(11, 106, 2, 0),
-(11, 114, 3, 0),
-(12, 78, 2, 0),
-(13, 99, 5, 0),
-(14, 71, 2, 0),
-(15, 71, 1, 0),
-(16, 35, 1, 0),
-(17, 104, 1, 0),
-(18, 83, 4, 0),
-(19, 26, 1, 0),
-(20, 107, 2, 0),
-(21, 113, 1, 0),
-(22, 111, 1, 0),
-(23, 109, 1, 0),
-(24, 111, 1, 0),
-(25, 109, 1, 0),
-(26, 112, 1, 0),
-(27, 109, 2, 0),
-(28, 107, 1, 0),
-(29, 78, 1, 0),
-(30, 114, 1, 0),
-(31, 108, 1, 0),
-(32, 114, 3, 0),
-(33, 114, 1, 0),
-(34, 113, 1, 0),
-(35, 110, 1, 0),
-(36, 111, 1, 0),
-(37, 113, 1, 0),
-(38, 114, 1, 0),
-(39, 108, 1, 0),
-(40, 108, 1, 0),
-(41, 111, 1, 0),
-(42, 111, 1, 0),
-(43, 108, 1, 0),
-(44, 114, 1, 0),
-(45, 76, 1, 0),
-(46, 100, 1, 0),
-(47, 113, 1, 0),
-(48, 87, 1, 0),
-(49, 78, 1, 0),
-(50, 36, 1, 0),
-(51, 2, 1, 0),
-(52, 76, 1, 0),
-(53, 110, 1, 0),
-(54, 113, 1, 0),
-(55, 78, 1, 0),
-(56, 113, 1, 0),
-(57, 52, 1, 0),
-(58, 78, 1, 0),
-(59, 108, 1, 0),
-(60, 68, 1, 0),
-(61, 76, 1, 0),
-(62, 78, 1, 0),
-(63, 78, 1, 0),
-(64, 76, 1, 0),
-(65, 78, 1, 0.12),
-(66, 76, 1, 0.5),
-(66, 114, 1, 0),
-(67, 76, 2, 0.5),
-(67, 111, 3, 0),
-(68, 114, 1, 0),
-(69, 76, 1, 0.5),
-(70, 76, 2, 0.5),
-(70, 78, 3, 0.12),
-(70, 113, 1, 0),
-(71, 113, 1, 0),
-(72, 69, 2, 0),
-(73, 113, 1, 0),
-(74, 113, 1, 0),
-(75, 114, 1, 0),
-(76, 35, 1, 0),
-(77, 111, 1, 0),
-(77, 112, 1, 0),
-(77, 114, 7, 0),
-(78, 99, 3, 0.5),
-(79, 98, 4, 0.5),
-(79, 109, 1, 0),
-(80, 1, 1, 0),
-(81, 39, 1, 0),
-(82, 1, 3, 0),
-(83, 113, 1, 0),
-(84, 120, 3, 0),
-(85, 120, 3, 0),
-(86, 114, 1, 0);
+INSERT INTO `chitietdonhang` (`madh`, `masp`, `soluong`, `giamgia`, `gia`) VALUES
+(1, 13, 2, 0, 0),
+(1, 14, 1, 0, 0),
+(1, 15, 3, 0, 0),
+(2, 13, 2, 0, 0),
+(2, 14, 1, 0, 0),
+(2, 15, 3, 0, 0),
+(3, 2, 1, 0, 0),
+(4, 106, 1, 0, 0),
+(5, 113, 2, 0, 0),
+(6, 112, 1, 0, 0),
+(7, 109, 3, 0, 0),
+(7, 111, 9, 0, 0),
+(8, 99, 1, 0, 0),
+(8, 110, 2, 0, 0),
+(9, 113, 2, 0, 0),
+(10, 111, 1, 0, 0),
+(11, 106, 2, 0, 0),
+(11, 114, 3, 0, 0),
+(12, 78, 2, 0, 0),
+(13, 99, 5, 0, 0),
+(14, 71, 2, 0, 0),
+(15, 71, 1, 0, 0),
+(16, 35, 1, 0, 0),
+(17, 104, 1, 0, 0),
+(18, 83, 4, 0, 0),
+(19, 26, 1, 0, 0),
+(20, 107, 2, 0, 0),
+(21, 113, 1, 0, 0),
+(22, 111, 1, 0, 0),
+(23, 109, 1, 0, 0),
+(24, 111, 1, 0, 0),
+(25, 109, 1, 0, 0),
+(26, 112, 1, 0, 0),
+(27, 109, 2, 0, 0),
+(28, 107, 1, 0, 0),
+(29, 78, 1, 0, 0),
+(30, 114, 1, 0, 0),
+(31, 108, 1, 0, 0),
+(32, 114, 3, 0, 0),
+(33, 114, 1, 0, 0),
+(34, 113, 1, 0, 0),
+(35, 110, 1, 0, 0),
+(36, 111, 1, 0, 0),
+(37, 113, 1, 0, 0),
+(38, 114, 1, 0, 0),
+(39, 108, 1, 0, 0),
+(40, 108, 1, 0, 0),
+(41, 111, 1, 0, 0),
+(42, 111, 1, 0, 0),
+(43, 108, 1, 0, 0),
+(44, 114, 1, 0, 0),
+(45, 76, 1, 0, 0),
+(46, 100, 1, 0, 0),
+(47, 113, 1, 0, 0),
+(48, 87, 1, 0, 0),
+(49, 78, 1, 0, 0),
+(50, 36, 1, 0, 0),
+(51, 2, 1, 0, 0),
+(52, 76, 1, 0, 0),
+(53, 110, 1, 0, 0),
+(54, 113, 1, 0, 0),
+(55, 78, 1, 0, 0),
+(56, 113, 1, 0, 0),
+(57, 52, 1, 0, 0),
+(58, 78, 1, 0, 0),
+(59, 108, 1, 0, 0),
+(60, 68, 1, 0, 0),
+(61, 76, 1, 0, 0),
+(62, 78, 1, 0, 0),
+(63, 78, 1, 0, 0),
+(64, 76, 1, 0, 0),
+(65, 78, 1, 0.12, 0),
+(66, 76, 1, 0.5, 0),
+(66, 114, 1, 0, 0),
+(67, 76, 2, 0.5, 0),
+(67, 111, 3, 0, 0),
+(68, 114, 1, 0, 0),
+(69, 76, 1, 0.5, 0),
+(70, 76, 2, 0.5, 0),
+(70, 78, 3, 0.12, 0),
+(70, 113, 1, 0, 0),
+(71, 113, 1, 0, 0),
+(72, 69, 2, 0, 0),
+(73, 113, 1, 0, 0),
+(74, 113, 1, 0, 0),
+(75, 114, 1, 0, 0),
+(76, 35, 1, 0, 0),
+(77, 111, 1, 0, 0),
+(77, 112, 1, 0, 0),
+(77, 114, 7, 0, 0),
+(78, 99, 3, 0.5, 0),
+(79, 98, 4, 0.5, 0),
+(79, 109, 1, 0, 0),
+(80, 1, 1, 0, 0),
+(81, 39, 1, 0, 0),
+(82, 1, 3, 0, 0),
+(83, 113, 1, 0, 0),
+(84, 120, 3, 0, 0),
+(85, 120, 3, 0, 0),
+(86, 114, 1, 0, 0),
+(87, 120, 2, 0, 0),
+(88, 121, 1, 0, 0),
+(89, 123, 3, 0, 0),
+(90, 122, 1, 0, 0),
+(91, 123, 3, 0, 0),
+(109, 123, 1, 0, 22),
+(110, 118, 3, 0, 57500),
+(111, 114, 3, 0, 240000),
+(111, 118, 2, 0, 65000),
+(112, 121, 1, 0, 210000);
 
 -- --------------------------------------------------------
 
@@ -288,7 +299,10 @@ INSERT INTO `chitietphieunhap` (`mapn`, `masp`, `soluong`, `gianhap`) VALUES
 (23, 1, 9, 51481),
 (24, 1, 10, 61305),
 (25, 1, 15, 71756),
-(26, 121, 12, 150000);
+(26, 121, 12, 150000),
+(27, 122, 5, 150000),
+(28, 123, 10, 100),
+(29, 123, 200, 14);
 
 -- --------------------------------------------------------
 
@@ -307,13 +321,15 @@ CREATE TABLE `danhmuc` (
 --
 
 INSERT INTO `danhmuc` (`madm`, `tendm`, `trangthai`) VALUES
-('DM001', 'Phiêu lưu', 1),
-('DM69c0aa7b03380', 'kinh dị', 1),
+('DM001', 'Phiêu lưu', 0),
+('DM69c0aa7b03380', 'Kinh dị', 0),
+('DM69c2aeee4abcb', 'Tiểu thuyết', 0),
+('DM69c361238e081', 'Văn chương', 0),
 ('Lichsu', 'Lịch sử', 1),
 ('Tamly', 'Tâm lý', 1),
 ('Thieunhi', 'Thiếu nhi', 1),
 ('Tongiao', 'Tôn giáo', 1),
-('tt', 'trinh thám', 1),
+('tt', 'Trinh thám', 1),
 ('Vanhoc', 'Văn học', 1);
 
 -- --------------------------------------------------------
@@ -423,7 +439,16 @@ INSERT INTO `donhang` (`madh`, `makh`, `ngaydat`, `diachi`, `sdt`, `tongtien`, `
 (83, 1, '2026-03-12 15:50:51', '89 Trần Văn Giau, Tân Quy, jk', '0123456789', 144000, 'COD', 2),
 (84, 66, '2026-03-05 01:30:10', 'ttt, tt, tt', '0909022966', 36, 'COD', 4),
 (85, 66, '2026-03-10 01:35:10', 'qqq,Phường 1,Quy Nhơn', '0909022966', 36, 'COD', 5),
-(86, 1, '2026-03-21 02:19:07', 'gdg, gfgdg, hghhgf', '0123456789', 240000, 'COD', 2);
+(86, 1, '2026-03-21 02:19:07', 'gdg, gfgdg, hghhgf', '0123456789', 240000, 'COD', 2),
+(87, 1, '2026-03-24 12:05:15', '89 Trần Văn Giau, bkhh, hjkj', '0123456789', 36, 'COD', 2),
+(88, 1, '2026-03-24 12:18:13', '118 Chùa Liên Hương,Phường Tân Kiểng,Cần Thơ', '0123456789', 172500, 'COD', 5),
+(89, 1, '2026-04-28 02:12:40', 'yyy, yyy, yyy', '0123456789', 450, 'COD', 4),
+(90, 1, '2026-03-28 09:41:21', '89 Trần Văn Giau, Tân Quy, iu', '0123456789', 225000, 'MOMO', 1),
+(91, 1, '2026-03-28 10:14:42', '118 Chùa Liên Hương,Phường Tân Kiểng,Cần Thơ', '0123456789', 63, 'COD', 2),
+(109, 1, '2026-03-28 11:12:40', '118 Chùa Liên Hương,Phường Tân Kiểng,Cần Thơ', '0123456789', 22, 'COD', 2),
+(110, 1, '2026-03-28 11:14:04', '118 Chùa Liên Hương,Phường Tân Kiểng,Cần Thơ', '0123456789', 172500, 'COD', 2),
+(111, 1, '2026-03-28 11:18:18', '118 Chùa Liên Hương,Phường Tân Kiểng,Cần Thơ', '0123456789', 850000, 'COD', 2),
+(112, 1, '2026-03-28 11:39:23', '118 Chùa Liên Hương,Phường Tân Kiểng,Cần Thơ', '0123456789', 210000, 'MOMO', 1);
 
 -- --------------------------------------------------------
 
@@ -443,13 +468,12 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`magio`, `masp`, `soluong`, `trangthai`) VALUES
-(1, 112, 2, 1),
-(1, 120, 1, 1),
 (2, 98, 3, 1),
 (2, 109, 1, 1),
 (2, 112, 6, 1),
 (2, 113, 5, 1),
-(14, 112, 1, 1);
+(14, 112, 1, 1),
+(64, 114, 42, 1);
 
 -- --------------------------------------------------------
 
@@ -503,40 +527,40 @@ CREATE TABLE `khuyenmai` (
 --
 
 INSERT INTO `khuyenmai` (`makm`, `tenkm`, `heso`, `masp`, `ngaybatdau`, `ngayketthuc`) VALUES
-(1, 'giảm giá sốc ngày quốc khánh', 0.1, 78, '2026-01-01', '2026-03-10'),
-(2, 'giảm giá sốc', 0.2, 2, '2026-01-01', '2026-03-10'),
-(3, 'khuyenmai', 0.12, 78, '2026-01-01', '2026-03-10'),
-(4, 'khuyến mãi', 0.2, 14, '2026-01-01', '2026-03-10'),
-(35, 'khuyến mãi', 0.5, 58, '2026-01-01', '2026-03-10'),
-(36, 'khuyến mãi', 0.5, 42, '2026-01-01', '2026-03-10'),
-(37, 'khuyến mãi', 0.5, 37, '2026-01-02', '2026-03-10'),
-(38, 'khuyến mãi', 0.5, 57, '2026-01-02', '2026-03-10'),
-(39, 'khuyến mãi', 0.5, 76, '2026-01-03', '2026-03-10'),
-(40, 'khuyến mãi', 0.5, 9, '2026-01-03', '2026-03-10'),
-(41, 'khuyến mãi', 0.5, 14, '2026-01-04', '2026-03-10'),
-(42, 'khuyến mãi', 0.5, 42, '2026-01-05', '2026-03-10'),
-(43, 'khuyến mãi', 0.5, 68, '2026-01-05', '2026-03-10'),
-(44, 'khuyến mãi', 0.5, 12, '2026-01-06', '2026-03-10'),
-(45, 'khuyến mãi', 0.5, 59, '2026-01-07', '2026-03-10'),
-(46, 'khuyến mãi', 0.5, 56, '2026-01-08', '2026-03-10'),
-(47, 'khuyến mãi', 0.5, 3, '2026-01-08', '2026-03-10'),
-(48, 'khuyến mãi', 0.5, 46, '2026-01-09', '2026-03-10'),
-(49, 'khuyến mãi', 0.5, 22, '2026-01-10', '2026-03-10'),
-(50, 'khuyến mãi', 0.5, 71, '2026-01-10', '2026-03-10'),
-(51, 'khuyến mãi', 0.5, 87, '2026-01-11', '2026-03-10'),
-(52, 'khuyến mãi', 0.5, 23, '2026-01-12', '2026-03-10'),
-(53, 'khuyến mãi', 0.5, 54, '2026-01-13', '2026-03-10'),
-(54, 'khuyến mãi', 0.5, 99, '2026-01-14', '2026-03-10'),
-(55, 'khuyến mãi', 0.5, 35, '2026-01-15', '2026-03-10'),
-(56, 'khuyến mãi', 0.5, 75, '2026-01-16', '2026-03-10'),
-(57, 'khuyến mãi', 0.5, 69, '2026-01-17', '2026-03-10'),
-(58, 'khuyến mãi', 0.5, 21, '2026-01-18', '2026-03-10'),
-(59, 'khuyến mãi', 0.5, 98, '2026-01-19', '2026-03-10'),
-(60, 'khuyến mãi', 0.5, 26, '2026-01-20', '2026-03-10'),
-(61, 'khuyến mãi', 0.5, 35, '2026-01-21', '2026-03-10'),
-(62, 'khuyến mãi', 0.5, 98, '2026-01-22', '2026-03-10'),
-(63, 'khuyến mãi', 0.5, 83, '2026-01-23', '2026-03-10'),
-(64, 'khuyến mãi', 0.5, 20, '2026-01-24', '2026-03-10');
+(1, 'giảm giá sốc ngày quốc khánh', 0.1, 78, '2026-01-01', '2026-03-22'),
+(2, 'giảm giá sốc', 0.2, 2, '2026-01-01', '2026-03-22'),
+(3, 'khuyenmai', 0.12, 78, '2026-01-01', '2026-03-22'),
+(4, 'khuyến mãi', 0.2, 14, '2026-01-01', '2026-03-22'),
+(35, 'khuyến mãi', 0.5, 58, '2026-01-01', '2026-03-22'),
+(36, 'khuyến mãi', 0.5, 42, '2026-01-01', '2026-03-22'),
+(37, 'khuyến mãi', 0.5, 37, '2026-01-02', '2026-03-22'),
+(38, 'khuyến mãi', 0.5, 57, '2026-01-02', '2026-03-22'),
+(39, 'khuyến mãi', 0.5, 76, '2026-01-03', '2026-03-22'),
+(40, 'khuyến mãi', 0.5, 9, '2026-01-03', '2026-03-22'),
+(41, 'khuyến mãi', 0.5, 14, '2026-01-04', '2026-03-22'),
+(42, 'khuyến mãi', 0.5, 42, '2026-01-05', '2026-03-22'),
+(43, 'khuyến mãi', 0.5, 68, '2026-01-05', '2026-03-22'),
+(44, 'khuyến mãi', 0.5, 12, '2026-01-06', '2026-03-22'),
+(45, 'khuyến mãi', 0.5, 59, '2026-01-07', '2026-03-22'),
+(46, 'khuyến mãi', 0.5, 56, '2026-01-08', '2026-03-22'),
+(47, 'khuyến mãi', 0.5, 3, '2026-01-08', '2026-03-22'),
+(48, 'khuyến mãi', 0.5, 46, '2026-01-09', '2026-03-22'),
+(49, 'khuyến mãi', 0.5, 22, '2026-01-10', '2026-03-22'),
+(50, 'khuyến mãi', 0.5, 71, '2026-01-10', '2026-03-22'),
+(51, 'khuyến mãi', 0.5, 87, '2026-01-11', '2026-03-22'),
+(52, 'khuyến mãi', 0.5, 23, '2026-01-12', '2026-03-22'),
+(53, 'khuyến mãi', 0.5, 54, '2026-01-13', '2026-03-22'),
+(54, 'khuyến mãi', 0.5, 99, '2026-01-14', '2026-03-22'),
+(55, 'khuyến mãi', 0.5, 35, '2026-01-15', '2026-03-22'),
+(56, 'khuyến mãi', 0.5, 75, '2026-01-16', '2026-03-22'),
+(57, 'khuyến mãi', 0.5, 69, '2026-01-17', '2026-03-22'),
+(58, 'khuyến mãi', 0.5, 21, '2026-01-18', '2026-03-22'),
+(59, 'khuyến mãi', 0.5, 98, '2026-01-19', '2026-03-22'),
+(60, 'khuyến mãi', 0.5, 26, '2026-01-20', '2026-03-22'),
+(61, 'khuyến mãi', 0.5, 35, '2026-01-21', '2026-03-22'),
+(62, 'khuyến mãi', 0.5, 98, '2026-01-22', '2026-03-22'),
+(63, 'khuyến mãi', 0.5, 83, '2026-01-23', '2026-03-22'),
+(64, 'khuyến mãi', 0.5, 20, '2026-01-24', '2026-03-22');
 
 -- --------------------------------------------------------
 
@@ -568,7 +592,10 @@ INSERT INTO `phieunhap` (`mapn`, `ngaynhap`, `tongtien`) VALUES
 (23, '2026-03-28', 463329),
 (24, '2026-03-28', 613050),
 (25, '2026-03-06', 1076340),
-(26, '2026-03-22', 1800000);
+(26, '2026-03-22', 1800000),
+(27, '2026-03-24', 750000),
+(28, '2026-03-01', 1000),
+(29, '2026-05-01', 2800);
 
 -- --------------------------------------------------------
 
@@ -700,8 +727,8 @@ INSERT INTO `sanpham` (`masp`, `tensp`, `tacgia`, `danhmuc`, `gianhap`, `gia`, `
 (99, 'Đạo Làm Con Trong Nho Giáo', 'Nguyễn Hiến Lê', 'Tongiao', 150000, 165000, 10, 19, 'Giới thiệu về chữ Hiếu và các nguyên tắc đạo đức trong Nho giáo, ảnh hưởng sâu sắc đến văn hóa Á Đông.', 'img/tg15.jfif', 'Nhà xuất bản Tôn giáo', 2022, 399, 'Tiếng Việt', '13x19 cm', '482 g', 'Bìa cứng', 1),
 (100, 'Truyện Kiều', 'Nguyễn Du', 'Vanhoc', 100000, 110000, 10, 13, 'Kiệt tác văn học Việt Nam kể về cuộc đời đầy gian truân của Thúy Kiều, với ngôn ngữ thơ Nôm đỉnh cao và giá trị nhân văn sâu sắc.', 'img/vh1.jfif', 'Nhà xuất bản Văn học', 2018, 170, 'Tiếng Việt', '13x19 cm', '305 g', 'Bìa cứng', 1),
 (101, 'Chiếc Lược Ngà', 'Nguyễn Quang Sáng', 'Vanhoc', 120000, 144000, 20, 17, 'Tập truyện ngắn nổi tiếng với tác phẩm cùng tên kể về tình cha con trong chiến tranh, cảm động và đầy tính nhân văn.', 'img/vh2.jfif', 'Nhà xuất bản Văn học', 2016, 253, 'Tiếng Việt', '13x19 cm', '415 g', 'Bìa mềm', 1),
-(102, 'Chí Phèo', 'Nam Cao', 'Vanhoc', 200000, 220000, 10, 10, 'Truyện ngắn kinh điển về bi kịch của người nông dân bị tha hóa và khát vọng được làm người lương thiện.', 'img/vh3.jfif', 'Nhà xuất bản Văn học', 2023, 177, 'Tiếng Việt', '15x21 cm', '360 g', 'Bìa mềm', 1),
-(103, 'Số Đỏ', 'Vũ Trọng Phụng', 'Vanhoc', 150000, 180000, 20, 15, 'Tiểu thuyết trào phúng xuất sắc, phê phán xã hội thượng lưu thành thị Việt Nam những năm 1930 với nhân vật Xuân tóc đỏ đầy ấn tượng.', 'img/vh3.jfif', 'Nhà xuất bản Văn học', 2018, 188, 'Tiếng Việt', '14x20 cm', '211 g', 'Bìa cứng', 1),
+(102, 'Chí Phèo', 'Nam Cao', 'Vanhoc', 200000, 220000, 10, 10, 'Truyện ngắn kinh điển về bi kịch của người nông dân bị tha hóa và khát vọng được làm người lương thiện.', 'img/102.webp', 'Nhà xuất bản Tổng Hợp TPHCM', 2024, 178, 'Tiếng Anh', '15x20 cm', '370 g', 'Bìa cứng', 1),
+(103, 'Số Đỏ', 'Vũ Trọng Phụng', 'Vanhoc', 150000, 180000, 20, 15, 'Tiểu thuyết trào phúng xuất sắc, phê phán xã hội thượng lưu thành thị Việt Nam những năm 1930 với nhân vật Xuân tóc đỏ đầy ấn tượng.', 'img/103.webp', 'Nhà xuất bản Văn học', 2018, 188, 'Tiếng Việt', '14x20 cm', '211 g', 'Bìa cứng', 1),
 (104, 'Tắt Đèn', 'Ngô Tất Tố', 'Vanhoc', 100000, 110000, 10, 18, 'Tác phẩm hiện thực phê phán xuất sắc về cuộc sống cùng cực của người nông dân Việt Nam dưới ách thực dân phong kiến.', 'img/vh5.jfif', 'Nhà xuất bản Văn học', 2021, 392, 'Tiếng Việt', '13x19 cm', '419 g', 'Bìa mềm', 1),
 (105, 'Bỉ Vỏ', 'Nguyên Hồng', 'Vanhoc', 120000, 144000, 20, 12, 'Tiểu thuyết về cuộc đời của cô gái tên Bưởi - một \"bỉ vỏ\" với những thăng trầm, đau khổ và khát vọng sống.', 'img/vh6.jfif', 'Nhà xuất bản Văn học', 2021, 438, 'Tiếng Việt', '13x19 cm', '223 g', 'Bìa mềm', 1),
 (106, 'Vợ Nhặt', 'Kim Lân', 'Vanhoc', 200000, 240000, 20, 20, 'Truyện ngắn đặc sắc về tình người và khát vọng sống trong nạn đói năm 1945, với hình tượng \"vợ nhặt\" độc đáo.', 'img/vh7.jfif', 'Nhà xuất bản Văn học', 2016, 272, 'Tiếng Việt', '15x21 cm', '497 g', 'Bìa bóng', 1),
@@ -712,11 +739,14 @@ INSERT INTO `sanpham` (`masp`, `tensp`, `tacgia`, `danhmuc`, `gianhap`, `gia`, `
 (111, 'Mùa Lá Rụng Trong Vườn', 'Ma Văn Kháng', 'Vanhoc', 150000, 180000, 20, 13, 'Tiểu thuyết về sự biến đổi của gia đình truyền thống trong xã hội hiện đại, với những giá trị đạo đức đang bị thử thách', 'img/vh12.jfif', 'Nhà xuất bản Văn học', 2017, 334, 'Tiếng Việt', '17x25 cm', '430 g', 'Bìa mềm', 1),
 (112, 'Cánh Đồng Bất Tận', 'Nguyễn Ngọc Tư', 'Vanhoc', 100000, 110000, 10, 17, 'Tập truyện ngắn với giọng văn đặc trưng Nam Bộ, khắc họa cuộc sống và số phận con người vùng sông nước với nhiều day dứt', 'img/vh13.jfif', 'Nhà xuất bản Văn học', 2022, 292, 'Tiếng Việt', '15x21 cm', '420 g', 'Bìa bóng', 1),
 (113, 'Nỗi Buồn Chiến Tranh', 'Bảo Ninh', 'Vanhoc', 120000, 144000, 20, 10, 'Tiểu thuyết đặc sắc về chiến tranh từ góc nhìn của người lính, với những ám ảnh, mất mát và nỗi buồn sâu thẳm', 'img/vh14.jfif', 'Nhà xuất bản Văn học', 2017, 361, 'Tiếng Việt', '14x20 cm', '335 g', 'Bìa cứng', 1),
-(114, 'Mảnh Đất Lắm Người Nhiều Ma', 'Nguyễn Khắc Trường', 'Vanhoc', 200000, 240000, 20, 15, 'Tiểu thuyết phản ánh xã hội nông thôn Việt Nam thời kỳ đổi mới với những mâu thuẫn, bi kịch và sự chuyển mình', 'img/114.jpg', 'Nhà xuất bản Văn học', 2016, 186, 'Tiếng Việt', '13x19 cm', '364 g', 'Bìa mềm', 1),
-(118, 'Tâm Lý học giáo dục', 'Nguyễn Thị Tứ', 'Tamly', 50000, 57500, 15, 10, 'Sách tâm lý học giáo dục chuyên nghiên cứu về tinh thần, hành vi, và quá trình nhận thức của con người trong môi trường học tập. Nội dung tập trung vào các phương pháp giảng dạy hiệu quả, động lực học tập, sự phát triển tâm lý của học sinh, quản lý lớp học và các chiến lược hỗ trợ học tập cá nhân hóa', 'img/118.jfif', '', 0, 0, '', '', '', '', 1),
-(119, 'Tâm Lý học trẻ em', 'Như Mai', 'Tamly', 100000, 0, 0, 5, 'Thấu hiểu và hỗ trợ trẻ tự kỷ: Cẩm nang dành cho phụ huynh và giáo viên để nhận diện, can thiệp và đồng hành cùng trẻ có nhu cầu đặc biệt.\r\nNgười Đức dạy con học các quy tắc: Phân tích các tình huống trẻ có hành vi khó bảo và cách thiết lập kỷ luật dựa trên tình yêu thương.', 'img/119.jfif', '', 0, 0, '', '', '', '', 1),
-(120, 'qqq', 'qqq', 'tt', 15, 18, 20, 20, 'qqq', 'img/120.png', '', 0, 0, '', '', '', '', 1),
-(121, 'yyy', 'ggdg', 'DM001', 150000, 172500, 15, 12, 'Sách này rất hay cho thiếu nhi', 'img/121.png', '', 0, 0, '', '', '', '', 1);
+(114, 'Mảnh Đất Lắm Người Nhiều Ma', 'Nguyễn Khắc Trường', 'Vanhoc', 200000, 260000, 30, 15, 'Tiểu thuyết phản ánh xã hội nông thôn Việt Nam thời kỳ đổi mới với những mâu thuẫn, bi kịch và sự chuyển mình', 'img/114.jpg', 'Nhà xuất bản Văn học', 2016, 186, 'Tiếng Việt', '13x19 cm', '364 g', 'Bìa mềm', 1),
+(118, 'Tâm Lý học giáo dục', 'Nguyễn Thị Tứ', 'Tamly', 50000, 70000, 40, 10, 'Sách tâm lý học giáo dục chuyên nghiên cứu về tinh thần, hành vi, và quá trình nhận thức của con người trong môi trường học tập. Nội dung tập trung vào các phương pháp giảng dạy hiệu quả, động lực học tập, sự phát triển tâm lý của học sinh, quản lý lớp học và các chiến lược hỗ trợ học tập cá nhân hóa', 'img/118.jfif', 'Nhà xuất bản Tổng Hợp TPHCM', 2023, 111, 'Tiếng Việt', '15x20 cm', '370 g', 'Bìa mềm', 1),
+(119, 'Tâm Lý học trẻ em', 'Như Mai', 'Tamly', 100000, 0, 0, 5, 'Thấu hiểu và hỗ trợ trẻ tự kỷ: Cẩm nang dành cho phụ huynh và giáo viên để nhận diện, can thiệp và đồng hành cùng trẻ có nhu cầu đặc biệt.\r\nNgười Đức dạy con học các quy tắc: Phân tích các tình huống trẻ có hành vi khó bảo và cách thiết lập kỷ luật dựa trên tình yêu thương.', 'img/119.jfif', 'Nhà xuất bản Tổng Hợp TPHCM', 2022, 12, 'Tiếng Việt', '15x20 cm', '565 g', 'Bìa mềm', 1),
+(120, 'Người Ếch', 'Shichiri Nakayama', 'tt', 15, 18, 20, 20, 'Một kẻ giết người mang mặt nạ ếch, để lại hiện trường đầy những dấu hiệu kỳ lạ. Một thanh tra bị cuốn vào vụ án với những bí ẩn không lời giải. Đâu là sự thật, đâu là lời dối trá? Khi cuộc săn đuổi trở thành một trò chơi sinh tử, liệu ai sẽ là kẻ chiến thắng?', 'img/120.jpg', 'Nhà xuất bản dân trí', 2023, 127, 'Tiếng Việt', '15x21 cm', '334 g', 'Bìa cứng', 1),
+(121, 'Phiêu Lưu Chữ', 'Hoàng Văn Khoa', 'DM001', 150000, 225000, 50, 12, 'Tiểu thuyết đương đại Việt Nam nói riêng là thế giới đa chiều kích. Tận dụng khả năng chưa đông cứng của tiểu thuyết, táo bạo trong thể nghiệm bút pháp hậu hiện đại, nhiều cây bút đã mang đến cho độc giả những bữa tiệc văn chương với thực đơn đầy tính mời mọc.', 'img/121.webp', 'Nhà xuất bản Tổng Hợp TPHCM', 2023, 122, 'Tiếng Việt', '14x20 cm', '565 g', 'Bìa bóng', 1),
+(122, 'Sĩ Số Lớp Vắng 0', 'Emma Hạ My', 'DM69c0aa7b03380', 150000, 225000, 50, 5, '“SĨ SỐ LỚP VẮNG 0” là cuốn sách được chắp bút bởi EMMA HẠ MY - chủ sở hữu kênh Youtube “Truyện của Emma” đăng tải những câu chuyện kinh dị tự sáng tác bằng hình ảnh hoạt họa do chính tác giả thực hiện. Cuốn sách bao gồm “Vệt Phấn Trên Bảng Đen” và 9 truyện ngắn khác CHƯA TỪNG xuất hiện trên kênh của Emma Hạ My.', 'img/122.webp', 'Nhà xuất bản dân trí', 2023, 11, 'Tiếng Việt', '15x21 cm', '565 g', 'Bìa mềm', 1),
+(123, 'Tôn Giáo và Nhân Sinh', 'Hòa thượng Thành Nghiêm', 'Tongiao', 14, 22, 60, 210, 'Đường đời muôn nẻo khiếm khuyết Bàn tiếp về đường đời muôn nẻo khiếm khuyết Nhân cách thăng hóa trong nỗi cô đơn Cõi đời hiu quạnh', 'img/123.jpg', 'Nhà xuất bản tôn giáo', 2022, 123, 'Tiếng Việt', '14x20 cm', '370 g', 'Bìa cứng', 1),
+(124, 'Đoàn Binh Tây Tiến', 'Quang Dũng', 'DM69c361238e081', 0, 0, 0, 0, 'Cảm xúc về một thời “Chiến trường đi chẳng tiếc đời xanh” của nhà thơ Quang Dũng trong bài thơ Tây Tiến dường như chưa đủ với ông. Tấm lòng thiết tha của tác giả những ngày hào hùng ấy đã dẫn đến thiên hồi ký “Đoàn Võ trang Tuyên truyền Biên khu Lào - Việt” (Đoàn binh Tây Tiến) ông viết mấy năm sau. Hơn là một phiên bản văn xuôi của bài thơ, tập hồi ký cho chúng ta biết thêm nhiều điều cụ thể về hoạt động của binh đoàn khi ấy, cũng như về các chiến sĩ Việt - Lào, những người cầm súng và cả những người cầm kèn trong Đoàn Võ trang Tuyên truyền cùng tham gia vào sứ mạng giải phóng đất nước mình và nước bạn khỏi ách thực dân xâm lược', 'img/124.webp', 'Nhà xuất bản dân trí', 2023, 678, 'Tiếng Việt', '15x20 cm', '565 g', 'Bìa mềm', 1);
 
 -- --------------------------------------------------------
 
@@ -825,7 +855,7 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `madh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `madh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT cho bảng `khachhang`
@@ -843,13 +873,13 @@ ALTER TABLE `khuyenmai`
 -- AUTO_INCREMENT cho bảng `phieunhap`
 --
 ALTER TABLE `phieunhap`
-  MODIFY `mapn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `mapn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `masp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `masp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

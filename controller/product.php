@@ -263,7 +263,13 @@ function handlePostRequest() {
     $mota = $_POST['mota'] ?? '';
     $link = $_POST['link'] ?? '';
     $trangthai = $_POST['trangthai'] ?? 1;
-    
+    $trongluong = $_POST['trongluong'] ?? 0;
+    $sotrang = $_POST['sotrang'] ?? '';
+    $loaibia = $_POST['loaibia'] ?? '';
+    $kichthuoc = $_POST['kichthuoc'] ?? '';
+    $ngonngu = $_POST['ngonngu'] ?? '';
+    $namxb = $_POST['namxb'] ?? '';
+    $nxb = $_POST['nxb'] ?? '';
      // Gán giá trị
     $product->masp= htmlspecialchars(strip_tags($masp));
     $product->tensp = htmlspecialchars(strip_tags($tensp));
@@ -275,6 +281,13 @@ function handlePostRequest() {
     $product->mota = htmlspecialchars(strip_tags($mota));
     $product->link = htmlspecialchars(strip_tags($link));
     $product->trangthai = htmlspecialchars(strip_tags($trangthai));
+    $product->trongluong = htmlspecialchars(strip_tags($trongluong));
+    $product->sotrang = htmlspecialchars(strip_tags($sotrang));
+    $product->hinhthuc = htmlspecialchars(strip_tags($loaibia));
+    $product->kichthuoc = htmlspecialchars(strip_tags($kichthuoc));
+    $product->ngonngu = htmlspecialchars(strip_tags($ngonngu));
+    $product->namxb = htmlspecialchars(strip_tags($namxb));
+    $product->nxb = htmlspecialchars(strip_tags($nxb));
     // Phân biệt THÊM MỚI hay SỬA
     if (!empty($masp)) {
         // SỬA sản phẩm

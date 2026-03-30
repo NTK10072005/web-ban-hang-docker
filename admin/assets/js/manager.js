@@ -1947,6 +1947,41 @@ restoreProduct: async function(productId) {
                                     <label for="productDescription" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Mô tả sản phẩm</label>
                                     <textarea class="form-control" id="productDescription" name="productDescription" rows="4" placeholder="Nhập mô tả chi tiết về sản phẩm" style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;"></textarea>
                                 </div>
+
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="nxb" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Nhà xuất bản <span style="color:#dc3545;">*</span></label>
+                                    <input type="text" class="form-control" id="nxb" name="nxb" placeholder="Nhập tên nhà xuất bản" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="namxb" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Năm xuất bản <span style="color:#dc3545;">*</span></label>
+                                    <input type="number" class="form-control" id="namxb" name="namxb" placeholder="Nhập năm xuất bản" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+                                
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="sotrang" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Số trang <span style="color:#dc3545;">*</span></label>
+                                    <input type="number" class="form-control" id="sotrang" name="sotrang" placeholder="Nhập số trang" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+                                
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="ngonngu" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Ngôn ngữ <span style="color:#dc3545;">*</span></label>
+                                    <input type="text" class="form-control" id="ngonngu" name="ngonngu" placeholder="Nhập ngôn ngữ" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="kichthuoc" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Kích thước <span style="color:#dc3545;">*</span></label>
+                                    <input type="text" class="form-control" id="kichthuoc" name="kichthuoc" placeholder="Nhập kích thước" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="trongluong" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Trọng lượng <span style="color:#dc3545;">*</span></label>
+                                    <input type="text" class="form-control" id="trongluong" name="trongluong" placeholder="Nhập trọng lượng" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="loaibia" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Loại bìa <span style="color:#dc3545;">*</span></label>
+                                    <input type="text" class="form-control" id="loaibia" name="loaibia" placeholder="Nhập loại bìa" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
                             </div>
 
                            <!-- Right column - Hình ảnh -->
@@ -2019,6 +2054,13 @@ restoreProduct: async function(productId) {
     const productCategory = document.getElementById('productCategory').value;
     const productDescription = document.getElementById('productDescription').value.trim();
     const productImage = document.getElementById('productImage').files[0];
+    const nxb = document.getElementById('nxb').value.trim();
+    const namxb = document.getElementById('namxb').value.trim();
+    const sotrang = document.getElementById('sotrang').value.trim();
+    const ngonngu = document.getElementById('ngonngu').value.trim();
+    const kichthuoc = document.getElementById('kichthuoc').value.trim();
+    const trongluong = document.getElementById('trongluong').value.trim();
+    const loaibia = document.getElementById('loaibia').value.trim();
 
     // Kiểm tra các trường bắt buộc
     if (!productName) {
@@ -2041,6 +2083,42 @@ restoreProduct: async function(productId) {
         document.getElementById('productImage').focus();
         return;
     }
+        if (!nxb) {
+        this.showNotification('error', 'Lỗi', 'Vui lòng nhập nhà xuất bản');
+        document.getElementById('nxb').focus();
+        return;
+    }
+    if (!namxb) {       
+        this.showNotification('error', 'Lỗi', 'Vui lòng nhập năm xuất bản');
+        document.getElementById('namxb').focus();
+        return;
+    }
+    if (!sotrang) {
+        this.showNotification('error', 'Lỗi', 'Vui lòng nhập số trang');
+        document.getElementById('sotrang').focus();
+        return;
+    }
+    if (!ngonngu) {
+        this.showNotification('error', 'Lỗi', 'Vui lòng nhập ngôn ngữ');
+        document.getElementById('ngonngu').focus();
+        return;
+    }
+    if (!kichthuoc) {
+        this.showNotification('error', 'Lỗi', 'Vui lòng nhập kích thước');
+        document.getElementById('kichthuoc').focus();
+        return;
+    }
+    if (!trongluong) {
+        this.showNotification('error', 'Lỗi', 'Vui lòng nhập trọng lượng');
+        document.getElementById('trongluong').focus();
+        return;
+    }
+    if (!loaibia) {
+        this.showNotification('error', 'Lỗi', 'Vui lòng nhập loại bìa');
+        document.getElementById('loaibia').focus();
+        return;
+    }
+
 
     // Tạo FormData
     const formData = new FormData();
@@ -2050,7 +2128,13 @@ restoreProduct: async function(productId) {
     formData.append('danhmuc', productCategory);
     formData.append('mota', productDescription);
     formData.append('anhsp', productImage);
-
+    formData.append('nxb', nxb);
+    formData.append('namxb', namxb);
+    formData.append('sotrang', sotrang);
+    formData.append('ngonngu', ngonngu);
+    formData.append('kichthuoc', kichthuoc);
+    formData.append('trongluong', trongluong);
+    formData.append('loaibia', loaibia);
     // Gửi request
     try {
         const response = await fetch('http://localhost/web2/controller/product.php', {
@@ -2138,6 +2222,42 @@ restoreProduct: async function(productId) {
                               <label for="productDescription" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Mô tả sản phẩm</label>
                               <textarea class="form-control" id="productDescription" name="productDescription" rows="4" style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;">${product.mota}</textarea>
                             </div>
+
+                            
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="nxb" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Nhà xuất bản <span style="color:#dc3545;">*</span></label>
+                                    <input value="${product.nhaxuatban}" type="text" class="form-control" id="nxb" name="nxb" placeholder="Nhập tên nhà xuất bản" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="namxb" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Năm xuất bản <span style="color:#dc3545;">*</span></label>
+                                    <input value="${product.namxuatban}" type="number" class="form-control" id="namxb" name="namxb" placeholder="Nhập năm xuất bản" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+                                
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="sotrang" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Số trang <span style="color:#dc3545;">*</span></label>
+                                    <input value="${product.sotrang}" type="number" class="form-control" id="sotrang" name="sotrang" placeholder="Nhập số trang" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+                                
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="ngonngu" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Ngôn ngữ <span style="color:#dc3545;">*</span></label>
+                                    <input value="${product.ngonngu}" type="text" class="form-control" id="ngonngu" name="ngonngu" placeholder="Nhập ngôn ngữ" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+
+                                 <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="kichthuoc" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Kích thước <span style="color:#dc3545;">*</span></label>
+                                    <input value="${product.kichthuoc}" type="text" class="form-control" id="kichthuoc" name="kichthuoc" placeholder="Nhập kích thước" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="trongluong" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Trọng lượng <span style="color:#dc3545;">*</span></label>
+                                    <input value="${product.trongluong}" type="text" class="form-control" id="trongluong" name="trongluong" placeholder="Nhập trọng lượng" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:1.5rem;">
+                                    <label for="loaibia" class="form-label" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#344767;">Loại bìa <span style="color:#dc3545;">*</span></label>
+                                    <input value="${product.loaibia}" type="text" class="form-control" id="loaibia" name="loaibia" placeholder="Nhập loại bìa" required style="width:100%;padding:0.75rem;border:1px solid #d2d6da;border-radius:0.5rem;font-size:0.875rem;transition:all 0.2s;">
+                                </div>
                           </div>
 
                           <div style="flex: 0 0 33.333333%; max-width: 33.333333%; padding-right: 15px; padding-left: 15px;">
@@ -2197,11 +2317,17 @@ handleUpdateProduct: async function(productId,lk) {
         const productCategory = document.getElementById('productCategory').value;
         const productDescription = document.getElementById('productDescription').value.trim();
         const productImage = document.getElementById('productImage').files[0];
-
+        const nxb = document.getElementById('nxb').value.trim();
+        const namxb = document.getElementById('namxb').value.trim();
+        const sotrang = document.getElementById('sotrang').value.trim();
+        const ngonngu = document.getElementById('ngonngu').value.trim();
+        const kichthuoc = document.getElementById('kichthuoc').value.trim();
+        const trongluong = document.getElementById('trongluong').value.trim();
+        const loaibia = document.getElementById('loaibia').value.trim();
         // 2. Kiểm tra điền đầy đủ thông tin (Validation)
         // Lưu ý: Đối với cập nhật, file ảnh thường là không bắt buộc (nếu không chọn thì giữ ảnh cũ)
         // Nhưng theo yêu cầu của bạn là "kiểm tra nhập file", tôi sẽ thêm vào kiểm tra.
-        if (!productName || !productAuthor || !productCategory) {
+        if (!productName || !productAuthor || !productCategory || !nxb || !namxb || !sotrang || !ngonngu || !kichthuoc || !trongluong || !loaibia) {
             this.showNotification('warning', 'Thông báo', 'Vui lòng nhập đầy đủ các trường thông tin bắt buộc (*)');
             return;
         }
@@ -2214,6 +2340,14 @@ handleUpdateProduct: async function(productId,lk) {
         formData.append('danhmuc', productCategory);
         formData.append('mota', productDescription);
         formData.append('link', lk);
+        formData.append('nxb', nxb);
+        formData.append('namxb', namxb);
+        formData.append('sotrang', sotrang);
+        formData.append('ngonngu', ngonngu);
+        formData.append('kichthuoc', kichthuoc);
+        formData.append('trongluong', trongluong);
+        formData.append('loaibia', loaibia);
+
 
         // Nếu người dùng có chọn file mới thì mới append vào
         if (productImage) {
@@ -2230,7 +2364,7 @@ handleUpdateProduct: async function(productId,lk) {
             if (!response.ok) {
                 throw new Error('Kết nối server thất bại');
             }
-
+            
             const result = await response.json();
 
             // 5. Xử lý kết quả trả về
@@ -2247,7 +2381,7 @@ handleUpdateProduct: async function(productId,lk) {
 
         } catch (error) {
             console.error('Lỗi khi cập nhật sản phẩm:', error);
-            this.showNotification('error', 'Lỗi', 'Đã xảy ra lỗi khi kết nối đến hệ thống');
+            this.showNotification('error', 'Lỗi', `${error.message}`);
         }
     },
    // Thêm vào trong ProductManagement object, sau hàm handleSearch()
