@@ -60,7 +60,7 @@
                 $madh_parts = explode('_', $vnp_TxnRef);
                 $madh = $madh_parts[0];
                 
-                $api_url = 'http://localhost/web2/controller/donhang.php';
+                $api_url = '/controller/donhang.php';
                 $post_data = array(
                     'madh' => $madh,
                     'action' => 'suapay',

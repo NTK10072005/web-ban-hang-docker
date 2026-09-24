@@ -6,9 +6,7 @@
 -- Thời gian đã tạo: Th3 29, 2026 lúc 07:29 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
-DROP DATABASE IF EXISTS `webbook`;
-CREATE DATABASE `tmdt`;
-USE `tmdt`;
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;

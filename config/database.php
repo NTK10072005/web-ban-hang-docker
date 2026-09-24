@@ -2,7 +2,7 @@
 // File: be/config/database.php
 
 class Database {
-    private $host = "localhost";
+    private $host = "db";
     private $db_name = "web2";
     private $username = "root";
     private $password = "";

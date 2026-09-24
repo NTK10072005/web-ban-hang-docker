@@ -383,7 +383,7 @@ async function loadCategoriesToSearchModal() {
     const categorySelect = document.getElementById('advancedCategorySelect');
     
     // Đường dẫn API của bạn (thay đổi cho đúng với project của bạn)
-    const apiUrl = 'http://localhost/web2/controller/danhmuc.php?action=alladmin'; 
+    const apiUrl = '/controller/danhmuc.php?action=alladmin'; 
 
     try {
         const response = await fetch(apiUrl);

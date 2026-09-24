@@ -763,7 +763,7 @@
             formData.append('masp', productId);
             formData.append('soluong', 1);
             try {
-                const response = await fetch('http://localhost/web2/controller/cart.php', {
+                const response = await fetch('/controller/cart.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -794,7 +794,7 @@
 
         async function fetchCategories() {
             try {
-                const response2 = await fetch('http://localhost/web2/controller/danhmuc.php?action=alladmin');
+                const response2 = await fetch('/controller/danhmuc.php?action=alladmin');
                 const data2 = await response2.json();
                 if (data2.success) {
                     const categoriesAdmin = data2.data;
@@ -849,7 +849,7 @@
             if (!productId) return;
 
             try {
-                const response = await fetch(`http://localhost/web2/controller/product.php?masp=${productId}`);
+                const response = await fetch(`/controller/product.php?masp=${productId}`);
                 const data = await response.json();
                 if (!data.success) {
                     console.error('Lỗi lấy chi tiết sản phẩm:', data.message);
@@ -1126,10 +1126,10 @@
             let apiUrl = '';
 
             if (action === 'search') {
-                apiUrl = `http://localhost/web2/controller/product.php?action=search&keywords=${encodeURIComponent(urlParams.get('keywords'))}`;
+                apiUrl = `/controller/product.php?action=search&keywords=${encodeURIComponent(urlParams.get('keywords'))}`;
                 document.getElementById('tensp').value = `${urlParams.get('keywords')}`;
             } else if (action === 'searchnangcao') {
-                apiUrl = `http://localhost/web2/controller/product.php?action=searchnangcao&category=${urlParams.get('category')}&tensp=${encodeURIComponent(urlParams.get('tensp'))}&giatu=${urlParams.get('giatu')}&giaden=${urlParams.get('giaden')}`;
+                apiUrl = `/controller/product.php?action=searchnangcao&category=${urlParams.get('category')}&tensp=${encodeURIComponent(urlParams.get('tensp'))}&giatu=${urlParams.get('giatu')}&giaden=${urlParams.get('giaden')}`;
                 document.getElementById('tensp').value = `${urlParams.get('tensp')}`;
                 document.getElementById('advancedCategorySelect').value = `${urlParams.get('category')}`;
                 document.getElementById('giatu').value = formatNumber(urlParams.get('giatu'));
@@ -1171,7 +1171,7 @@
 
         async function loadCategoriesToSearchModal() {
             const categorySelect = document.getElementById('advancedCategorySelect');
-            const apiUrl = 'http://localhost/web2/controller/danhmuc.php?action=all'; 
+            const apiUrl = '/controller/danhmuc.php?action=all'; 
 
             try {
                 const response = await fetch(apiUrl);

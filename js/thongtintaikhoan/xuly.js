@@ -1,216 +1,222 @@
-  // 1. Khai báo biến toàn cục
+// 1. Khai báo biến toàn cục
 window.userGlobalData = null;
 
 // 2. Hàm gọi API và lưu dữ liệu
 async function checkLoginAndUpdateUI() {
-    try {
-        // Gọi API kiểm tra đăng nhập
-        const response = await fetch('http://localhost/web2/controller/checklogin.php');
-        window.userGlobalData = await response.json();
-        
-        // Cập nhật giao diện
-        updateNavigation();
-        
-    } catch (error) {
-        console.error('Lỗi khi kiểm tra đăng nhập:', error);
-        updateNavigation(); // Vẫn cập nhật UI (hiển thị chưa đăng nhập)
-    }
+  try {
+    // Gọi API kiểm tra đăng nhập
+    const response = await fetch("/controller/checklogin.php");
+    window.userGlobalData = await response.json();
+
+    // Cập nhật giao diện
+    updateNavigation();
+  } catch (error) {
+    console.error("Lỗi khi kiểm tra đăng nhập:", error);
+    updateNavigation(); // Vẫn cập nhật UI (hiển thị chưa đăng nhập)
+  }
 }
 
 // 3. Hàm cập nhật navigation
 async function updateNavigation() {
-    const dropdownToggle = document.querySelector('.nav-link.dropdown-toggle');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
-    
-    if (!dropdownToggle || !dropdownMenu) return;
-    
-    if (window.userGlobalData?.success) {
-        const response2 =  await fetch(`controller/customer.php?makh=${window.userGlobalData.data.idkhach}`);
-        const mang2= await response2.json();
-        // ĐÃ đăng nhập
-        // Thay "Huynh Duc" bằng tên thật từ API
-        dropdownToggle.innerHTML = `<i class="fas fa-user"></i> &nbsp;${window.userGlobalData.data.tenkhach}`;
-        
-        // Hiển thị đầy đủ menu (giữ nguyên HTML gốc)
-        dropdownMenu.innerHTML = `
+  const dropdownToggle = document.querySelector(".nav-link.dropdown-toggle");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+
+  if (!dropdownToggle || !dropdownMenu) return;
+
+  if (window.userGlobalData?.success) {
+    const response2 = await fetch(
+      `controller/customer.php?makh=${window.userGlobalData.data.idkhach}`,
+    );
+    const mang2 = await response2.json();
+    // ĐÃ đăng nhập
+    // Thay "Huynh Duc" bằng tên thật từ API
+    dropdownToggle.innerHTML = `<i class="fas fa-user"></i> &nbsp;${window.userGlobalData.data.tenkhach}`;
+
+    // Hiển thị đầy đủ menu (giữ nguyên HTML gốc)
+    dropdownMenu.innerHTML = `
             <a href="thongtintaikhoan.html" class="dropdown-item"><i class="fa fa-id-card me-2"></i>  &nbsp;Thông tin</a>
             <a href="lichsumuahang.html" class="dropdown-item"> <i class="fa fa-history me-2"></i>&nbsp;Lịch sử mua hàng</a>
             <a href="controller/logout.php" class="dropdown-item"> <i class="fa fa-sign-out-alt me-2"></i>&nbsp;Đăng xuất</a>
         `;
 
-        const tableHTML = `
+    const tableHTML = `
        
             <tr>
                 <th style="width: 30%">Họ và tên</th>
-                <td>${mang2.data.hoten || 'Chưa có'}</td>
+                <td>${mang2.data.hoten || "Chưa có"}</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>${mang2.data.email || 'Chưa có'}</td>
+                <td>${mang2.data.email || "Chưa có"}</td>
             </tr>
             <tr>
                 <th>Số điện thoại</th>
-                <td>${mang2.data.sdt || 'Chưa có'}</td>
+                <td>${mang2.data.sdt || "Chưa có"}</td>
             </tr>
             <tr>
                 <th>Địa chỉ</th>
-                <td>${mang2.data.diachi|| 'Chưa có'}</td>
+                <td>${mang2.data.diachi || "Chưa có"}</td>
             </tr>
     `;
-         document.getElementById('table1').innerHTML = tableHTML;
-
-    } else {
-        window.location.href = "login.html";
-    }
+    document.getElementById("table1").innerHTML = tableHTML;
+  } else {
+    window.location.href = "login.html";
+  }
 }
 
 // 4. Gọi hàm khi trang load
-document.addEventListener('DOMContentLoaded', checkLoginAndUpdateUI);
-   
- function dangxuat() {
-            if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
-                window.location.href = 'logout.php';
-            }
-        }
+document.addEventListener("DOMContentLoaded", checkLoginAndUpdateUI);
 
-        document.querySelectorAll('.nav-link[data-toggle="pill"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-                document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('show', 'active'));
-                this.classList.add('active');
-                const pane = document.querySelector(this.getAttribute('href'));
-                pane.classList.add('show', 'active');
+function dangxuat() {
+  if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+    window.location.href = "logout.php";
+  }
+}
 
-                // Lưu tab đang active vào localStorage
-                const tabId = this.getAttribute('href').substring(1); // Bỏ dấu # ở đầu
-                localStorage.setItem('activeTab', tabId);
-            });
-        });
+document.querySelectorAll('.nav-link[data-toggle="pill"]').forEach((link) => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    document
+      .querySelectorAll(".nav-link")
+      .forEach((nav) => nav.classList.remove("active"));
+    document
+      .querySelectorAll(".tab-pane")
+      .forEach((tab) => tab.classList.remove("show", "active"));
+    this.classList.add("active");
+    const pane = document.querySelector(this.getAttribute("href"));
+    pane.classList.add("show", "active");
 
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.location.hash) {
-                const tabId = window.location.hash.substring(1); // Bỏ dấu # ở đầu
-                activateTabById(tabId);
-            }
-            else if (localStorage.getItem('activeTab')) {
-                const tabId = localStorage.getItem('activeTab');
-                activateTabById(tabId);
-                localStorage.removeItem('activeTab');
-            }
-        });
+    // Lưu tab đang active vào localStorage
+    const tabId = this.getAttribute("href").substring(1); // Bỏ dấu # ở đầu
+    localStorage.setItem("activeTab", tabId);
+  });
+});
 
-        function activateTabById(tabId) {
-            const tabLink = document.querySelector(`a[href="#${tabId}"]`);
-            if (tabLink) {
-                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-                document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('show', 'active'));
-                tabLink.classList.add('active');
-                const pane = document.querySelector(`#${tabId}`);
-                if (pane) {
-                    pane.classList.add('show', 'active');
-                }
-            }
-        }
-        // JavaScript cho nút phễu lọc và form tìm kiếm nâng cao
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtn = document.getElementById('filterBtn');
-            const modal = document.getElementById('advancedSearchModal');
-            const closeModal = document.querySelector('.close-modal');
-            const form = document.getElementById('advancedSearchForm');
-            const resetBtn = document.querySelector('.btn-reset');
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.location.hash) {
+    const tabId = window.location.hash.substring(1); // Bỏ dấu # ở đầu
+    activateTabById(tabId);
+  } else if (localStorage.getItem("activeTab")) {
+    const tabId = localStorage.getItem("activeTab");
+    activateTabById(tabId);
+    localStorage.removeItem("activeTab");
+  }
+});
 
-            // Hiển thị modal khi click nút phễu
-            filterBtn.addEventListener('click', function() {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Ngăn cuộn trang
-            });
+function activateTabById(tabId) {
+  const tabLink = document.querySelector(`a[href="#${tabId}"]`);
+  if (tabLink) {
+    document
+      .querySelectorAll(".nav-link")
+      .forEach((nav) => nav.classList.remove("active"));
+    document
+      .querySelectorAll(".tab-pane")
+      .forEach((tab) => tab.classList.remove("show", "active"));
+    tabLink.classList.add("active");
+    const pane = document.querySelector(`#${tabId}`);
+    if (pane) {
+      pane.classList.add("show", "active");
+    }
+  }
+}
+// JavaScript cho nút phễu lọc và form tìm kiếm nâng cao
+document.addEventListener("DOMContentLoaded", function () {
+  const filterBtn = document.getElementById("filterBtn");
+  const modal = document.getElementById("advancedSearchModal");
+  const closeModal = document.querySelector(".close-modal");
+  const form = document.getElementById("advancedSearchForm");
+  const resetBtn = document.querySelector(".btn-reset");
 
-            // Đóng modal
-            function closeModalHandler() {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
+  // Hiển thị modal khi click nút phễu
+  filterBtn.addEventListener("click", function () {
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden"; // Ngăn cuộn trang
+  });
 
-            closeModal.addEventListener('click', closeModalHandler);
+  // Đóng modal
+  function closeModalHandler() {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
 
-            // Đóng modal khi click bên ngoài
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    closeModalHandler();
-                }
-            });
+  closeModal.addEventListener("click", closeModalHandler);
 
-            // Đóng modal khi nhấn ESC
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape' && modal.style.display === 'block') {
-                    closeModalHandler();
-                }
-            });
+  // Đóng modal khi click bên ngoài
+  window.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      closeModalHandler();
+    }
+  });
 
-            // Xử lý form submit
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+  // Đóng modal khi nhấn ESC
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && modal.style.display === "block") {
+      closeModalHandler();
+    }
+  });
 
-                // Thu thập dữ liệu form
-                const formData = new FormData(form);
-                const searchParams = new URLSearchParams();
+  // Xử lý form submit
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-                for (let [key, value] of formData.entries()) {
-                    if (value.trim() !== '') {
-                        searchParams.append(key, value);
-                    }
-                }
+    // Thu thập dữ liệu form
+    const formData = new FormData(form);
+    const searchParams = new URLSearchParams();
 
-                // Đóng modal và chuyển hướng
-                closeModalHandler();
-                window.location.href = 'searchcotaikhoan.html?' + searchParams.toString();
-            });
+    for (let [key, value] of formData.entries()) {
+      if (value.trim() !== "") {
+        searchParams.append(key, value);
+      }
+    }
 
-            // Reset form
-            resetBtn.addEventListener('click', function() {
-                form.reset();
-            });
-        });
+    // Đóng modal và chuyển hướng
+    closeModalHandler();
+    window.location.href = "searchcotaikhoan.html?" + searchParams.toString();
+  });
 
-        // Search functionality
-        const searchBtn = document.getElementById("searchBtn");
-        const searchInput = document.getElementById("searchInput");
+  // Reset form
+  resetBtn.addEventListener("click", function () {
+    form.reset();
+  });
+});
 
-        // Khi click nút tìm kiếm
+// Search functionality
+const searchBtn = document.getElementById("searchBtn");
+const searchInput = document.getElementById("searchInput");
 
-         // Hàm định dạng số
-        function formatNumber(value) {
-            return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        }
+// Khi click nút tìm kiếm
 
-        // Hàm xử lý sự kiện input
-        function handleInput(event) {
-            let input = event.target;
-            let value = input.value.replace(/[^0-9]/g, '');  // Loại bỏ các ký tự không phải là số
-            input.value = formatNumber(value);  // Áp dụng định dạng
-        }
+// Hàm định dạng số
+function formatNumber(value) {
+  return value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
-        // Gán sự kiện cho các input
-        window.onload = function() {
-            const minPriceInput = document.querySelector('input[name="minPrice"]');
-            const maxPriceInput = document.querySelector('input[name="maxPrice"]');
-            
-            minPriceInput.addEventListener('input', handleInput);
-            maxPriceInput.addEventListener('input', handleInput);
-        };
-    
-    function initializeSearch() {
-        const searchBtn = document.getElementById("searchBtn");
-        const searchInput = document.getElementById("searchInput");
-                const searchBtn2 = document.getElementById("search");
+// Hàm xử lý sự kiện input
+function handleInput(event) {
+  let input = event.target;
+  let value = input.value.replace(/[^0-9]/g, ""); // Loại bỏ các ký tự không phải là số
+  input.value = formatNumber(value); // Áp dụng định dạng
+}
 
+// Gán sự kiện cho các input
+window.onload = function () {
+  const minPriceInput = document.querySelector('input[name="minPrice"]');
+  const maxPriceInput = document.querySelector('input[name="maxPrice"]');
 
-        // Tạo modal nếu chưa có
-        if (!document.getElementById('searchModal')) {
-            // Tìm phần modalHTML trong hàm initializeSearch() và sửa như sau:
+  minPriceInput.addEventListener("input", handleInput);
+  maxPriceInput.addEventListener("input", handleInput);
+};
 
-const modalHTML = `
+function initializeSearch() {
+  const searchBtn = document.getElementById("searchBtn");
+  const searchInput = document.getElementById("searchInput");
+  const searchBtn2 = document.getElementById("search");
+
+  // Tạo modal nếu chưa có
+  if (!document.getElementById("searchModal")) {
+    // Tìm phần modalHTML trong hàm initializeSearch() và sửa như sau:
+
+    const modalHTML = `
     <div id="searchModal" class="search-modal" style="
         display: none;
         position: fixed;
@@ -268,100 +274,105 @@ const modalHTML = `
         </div>
     </div>
 `;
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
-            
-            // Sự kiện đóng modal - SỬ DỤNG ID RIÊNG
-            document.getElementById('closeSearchModalBtn').addEventListener('click', () => {
-                document.getElementById('searchModal').style.display = 'none';
-            });
-            
-            document.getElementById('searchModal').addEventListener('click', (e) => {
-                if (e.target.id === 'searchModal') {
-                    document.getElementById('searchModal').style.display = 'none';
-                }
-            });
-            
-            // ESC để đóng modal tìm kiếm
-            document.addEventListener('keydown', function(e) {
-                const searchModal = document.getElementById('searchModal');
-                if (e.key === 'Escape' && searchModal.style.display === 'flex') {
-                    searchModal.style.display = 'none';
-                }
-            });
-        }
+    document.body.insertAdjacentHTML("beforeend", modalHTML);
 
-        // Hàm gọi API và hiển thị kết quả
-       async function performSearch() {
+    // Sự kiện đóng modal - SỬ DỤNG ID RIÊNG
+    document
+      .getElementById("closeSearchModalBtn")
+      .addEventListener("click", () => {
+        document.getElementById("searchModal").style.display = "none";
+      });
+
+    document.getElementById("searchModal").addEventListener("click", (e) => {
+      if (e.target.id === "searchModal") {
+        document.getElementById("searchModal").style.display = "none";
+      }
+    });
+
+    // ESC để đóng modal tìm kiếm
+    document.addEventListener("keydown", function (e) {
+      const searchModal = document.getElementById("searchModal");
+      if (e.key === "Escape" && searchModal.style.display === "flex") {
+        searchModal.style.display = "none";
+      }
+    });
+  }
+
+  // Hàm gọi API và hiển thị kết quả
+  async function performSearch() {
     let keyword = document.getElementById("searchInput").value.trim();
     if (!keyword) return;
 
     // Chuyển hướng sang trang mới kèm tham số
     window.location.href = `ketquatimkiem.php?action=search&keywords=${encodeURIComponent(keyword)}`;
-}
+  }
 
-// Thay thế hàm tìm kiếm nâng cao
-async function performSearch2() {
-    const tensp = document.getElementById('tensp').value;
+  // Thay thế hàm tìm kiếm nâng cao
+  async function performSearch2() {
+    const tensp = document.getElementById("tensp").value;
     const category = document.querySelector('select[name="category"]').value;
-    let giatu = document.querySelector('input[name="minPrice"]').value.replace(/\./g, '');
-    let giaden = document.querySelector('input[name="maxPrice"]').value.replace(/\./g, '');
+    let giatu = document
+      .querySelector('input[name="minPrice"]')
+      .value.replace(/\./g, "");
+    let giaden = document
+      .querySelector('input[name="maxPrice"]')
+      .value.replace(/\./g, "");
 
     // Tạo URL query string
     const params = new URLSearchParams({
-        action: 'searchnangcao',
-        category: category,
-        tensp: tensp,
-        giatu: giatu,
-        giaden: giaden
+      action: "searchnangcao",
+      category: category,
+      tensp: tensp,
+      giatu: giatu,
+      giaden: giaden,
     });
 
     window.location.href = `ketquatimkiem.php?${params.toString()}`;
-}
-        // Biến toàn cục lưu kết quả tìm kiếm
-        let searchResults = [];
-        let currentPage = 1;
-        const itemsPerPage = 6;
+  }
+  // Biến toàn cục lưu kết quả tìm kiếm
+  let searchResults = [];
+  let currentPage = 1;
+  const itemsPerPage = 6;
 
-        // Hiển thị kết quả với phân trang
-        function displaySearchResults(products) {
-            searchResults = products;
-            currentPage = 1;
-            renderResults();
-        }
+  // Hiển thị kết quả với phân trang
+  function displaySearchResults(products) {
+    searchResults = products;
+    currentPage = 1;
+    renderResults();
+  }
 
-        // Render kết quả theo trang
-        function renderResults() {
-            const resultsDiv = document.getElementById('searchResults');
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageProducts = searchResults.slice(start, end);
-             const categoryMapping = {
-            'Thieunhi': 'Thiếu nhi',
-            'Tamly': 'Tâm lý',
-            'Tongiao': 'Tôn giáo',
-            'Lichsu': 'Lịch sử',
-            'Vanhoc': 'Văn học'
-        };
-            if (pageProducts.length === 0) {
-                resultsDiv.innerHTML = '<p style="text-align: center; padding: 50px;">Không có sản phẩm nào.</p>';
-                return;
-            }
+  // Render kết quả theo trang
+  function renderResults() {
+    const resultsDiv = document.getElementById("searchResults");
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageProducts = searchResults.slice(start, end);
+    const categoryMapping = {
+      Thieunhi: "Thiếu nhi",
+      Tamly: "Tâm lý",
+      Tongiao: "Tôn giáo",
+      Lichsu: "Lịch sử",
+      Vanhoc: "Văn học",
+    };
+    if (pageProducts.length === 0) {
+      resultsDiv.innerHTML =
+        '<p style="text-align: center; padding: 50px;">Không có sản phẩm nào.</p>';
+      return;
+    }
 
-            // Tạo HTML cho sản phẩm
-            let html = `<div style="
+    // Tạo HTML cho sản phẩm
+    let html = `<div style="
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 20px;
                 margin-bottom: 30px;
             ">`;
 
-            pageProducts.forEach(product => {
-                const price = parseInt(product.gia).toLocaleString('vi-VN') + ' đ';
-                                const category =categoryMapping[product.danhmuc];
+    pageProducts.forEach((product) => {
+      const price = parseInt(product.gia).toLocaleString("vi-VN") + " đ";
+      const category = categoryMapping[product.danhmuc];
 
-                
-                
-                html += `
+      html += `
                     <div style="
                         border: 1px solid #ddd;
                         border-radius: 8px;
@@ -395,36 +406,36 @@ async function performSearch2() {
                         </div>
                     </div>
                 `;
-            });
+    });
 
-            html += '</div>';
-            
-            // Thêm phân trang nếu có nhiều sản phẩm
-            if (searchResults.length > itemsPerPage) {
-                const totalPages = Math.ceil(searchResults.length / itemsPerPage);
-                
-                html += `<div style="
+    html += "</div>";
+
+    // Thêm phân trang nếu có nhiều sản phẩm
+    if (searchResults.length > itemsPerPage) {
+      const totalPages = Math.ceil(searchResults.length / itemsPerPage);
+
+      html += `<div style="
                     display: flex;
                     justify-content: center;
                     gap: 10px;
                     margin-top: 20px;
                 ">`;
-                
-                // Nút trang trước
-                if (currentPage > 1) {
-                    html += `<button onclick="goToPage(${currentPage - 1})" style="
+
+      // Nút trang trước
+      if (currentPage > 1) {
+        html += `<button onclick="goToPage(${currentPage - 1})" style="
                         padding: 8px 15px;
                         border: 1px solid #ddd;
                         background: white;
                         cursor: pointer;
                         border-radius: 4px;
                     ">‹‹</button>`;
-                }
-                
-                // Các số trang
-                for (let i = 1; i <= totalPages; i++) {
-                    if (i === currentPage) {
-                        html += `<button style="
+      }
+
+      // Các số trang
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === currentPage) {
+          html += `<button style="
                             padding: 8px 15px;
                             border: 1px solid #ff6f61;
                             background: #ff6f61;
@@ -432,86 +443,86 @@ async function performSearch2() {
                             cursor: pointer;
                             border-radius: 4px;
                         ">${i}</button>`;
-                    } else {
-                        html += `<button onclick="goToPage(${i})" style="
+        } else {
+          html += `<button onclick="goToPage(${i})" style="
                             padding: 8px 15px;
                             border: 1px solid #ddd;
                             background: white;
                             cursor: pointer;
                             border-radius: 4px;
                         ">${i}</button>`;
-                    }
-                }
-                
-                // Nút trang sau
-                if (currentPage < totalPages) {
-                    html += `<button onclick="goToPage(${currentPage + 1})" style="
+        }
+      }
+
+      // Nút trang sau
+      if (currentPage < totalPages) {
+        html += `<button onclick="goToPage(${currentPage + 1})" style="
                         padding: 8px 15px;
                         border: 1px solid #ddd;
                         background: white;
                         cursor: pointer;
                         border-radius: 4px;
                     ">››</button>`;
-                }
-                
-                html += '</div>';
-            }
-            
-            resultsDiv.innerHTML = html;
-        }
+      }
 
-        // Hàm mở Quick View cho sản phẩm từ kết quả tìm kiếm
-        window.openQuickViewForSearchResult = async function(productId) {
-            // KHÔNG đóng modal tìm kiếm
-            // Tạo một card ảo để sử dụng hàm openQuickViewFromCard
-            const fakeCard = document.createElement('div');
-            fakeCard.setAttribute('data-product-id', productId);
-            
-            // Mở Quick View bằng hàm đã có
-            openQuickViewFromCard(fakeCard);
-        };
-
-        // Hàm chuyển trang
-        window.goToPage = function(page) {
-            currentPage = page;
-            renderResults();
-            document.getElementById('searchResults').scrollTop = 0;
-        };
-
-        // Gắn sự kiện
-        if (searchBtn) {
-            searchBtn.addEventListener("click", (e) => {
-                e.preventDefault();
-                performSearch();
-            });
-        }
-        if (searchBtn2) {
-            searchBtn2.addEventListener("click", (e) => {
-                e.preventDefault();
-                performSearch2();
-            });
-        }
-        if (searchInput) {
-            searchInput.addEventListener("keypress", (e) => {
-                if (e.key === "Enter") {
-                    e.preventDefault();
-                    performSearch();
-                }
-            });
-        }
+      html += "</div>";
     }
-    
-    // Gọi hàm initializeSearch khi trang tải xong
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeSearch();
+
+    resultsDiv.innerHTML = html;
+  }
+
+  // Hàm mở Quick View cho sản phẩm từ kết quả tìm kiếm
+  window.openQuickViewForSearchResult = async function (productId) {
+    // KHÔNG đóng modal tìm kiếm
+    // Tạo một card ảo để sử dụng hàm openQuickViewFromCard
+    const fakeCard = document.createElement("div");
+    fakeCard.setAttribute("data-product-id", productId);
+
+    // Mở Quick View bằng hàm đã có
+    openQuickViewFromCard(fakeCard);
+  };
+
+  // Hàm chuyển trang
+  window.goToPage = function (page) {
+    currentPage = page;
+    renderResults();
+    document.getElementById("searchResults").scrollTop = 0;
+  };
+
+  // Gắn sự kiện
+  if (searchBtn) {
+    searchBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      performSearch();
     });
-     function showMessage(message, type = 'success') {
-    // Tạo thông báo nếu chưa có
-    let messageDiv = document.getElementById('updateMessage');
-    if (!messageDiv) {
-        messageDiv = document.createElement('div');
-        messageDiv.id = 'updateMessage';
-        messageDiv.style.cssText = `
+  }
+  if (searchBtn2) {
+    searchBtn2.addEventListener("click", (e) => {
+      e.preventDefault();
+      performSearch2();
+    });
+  }
+  if (searchInput) {
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        performSearch();
+      }
+    });
+  }
+}
+
+// Gọi hàm initializeSearch khi trang tải xong
+document.addEventListener("DOMContentLoaded", function () {
+  initializeSearch();
+});
+function showMessage(message, type = "success") {
+  // Tạo thông báo nếu chưa có
+  let messageDiv = document.getElementById("updateMessage");
+  if (!messageDiv) {
+    messageDiv = document.createElement("div");
+    messageDiv.id = "updateMessage";
+    messageDiv.style.cssText = `
             position: fixed;
             top: 100px;
             right: 20px;
@@ -527,22 +538,22 @@ async function performSearch2() {
             align-items: center;
             justify-content: space-between;
         `;
-        document.body.appendChild(messageDiv);
-    }
+    document.body.appendChild(messageDiv);
+  }
 
-    // Thiết lập màu sắc theo loại thông báo
-    if (type === 'success') {
-        messageDiv.style.backgroundColor = '#d4edda';
-        messageDiv.style.color = '#155724';
-        messageDiv.style.border = '1px solid #c3e6cb';
-    } else {
-        messageDiv.style.backgroundColor = '#f8d7da';
-        messageDiv.style.color = '#721c24';
-        messageDiv.style.border = '1px solid #f5c6cb';
-    }
+  // Thiết lập màu sắc theo loại thông báo
+  if (type === "success") {
+    messageDiv.style.backgroundColor = "#d4edda";
+    messageDiv.style.color = "#155724";
+    messageDiv.style.border = "1px solid #c3e6cb";
+  } else {
+    messageDiv.style.backgroundColor = "#f8d7da";
+    messageDiv.style.color = "#721c24";
+    messageDiv.style.border = "1px solid #f5c6cb";
+  }
 
-    // Thêm nút đóng
-    messageDiv.innerHTML = `
+  // Thêm nút đóng
+  messageDiv.innerHTML = `
         <span>${message}</span>
         <button id="closeMessage" style="
             background: none;
@@ -555,117 +566,114 @@ async function performSearch2() {
         ">&times;</button>
     `;
 
-    // Hiển thị thông báo
-    messageDiv.style.display = 'flex';
+  // Hiển thị thông báo
+  messageDiv.style.display = "flex";
 
-    // Sự kiện đóng thông báo
-    document.getElementById('closeMessage').addEventListener('click', () => {
-        messageDiv.style.display = 'none';
-    });
+  // Sự kiện đóng thông báo
+  document.getElementById("closeMessage").addEventListener("click", () => {
+    messageDiv.style.display = "none";
+  });
 
-    // Tự động ẩn sau 5 giây
-    setTimeout(() => {
-        if (messageDiv.style.display !== 'none') {
-            messageDiv.style.display = 'none';
-        }
-    }, 5000);
+  // Tự động ẩn sau 5 giây
+  setTimeout(() => {
+    if (messageDiv.style.display !== "none") {
+      messageDiv.style.display = "none";
+    }
+  }, 5000);
 }
 
-        // 9. Hàm thêm vào giỏ hàng (mẫu)
-        async function addToCart(productId) {
-           event.preventDefault();
-           if (!window.userGlobalData || !window.userGlobalData.success) {
-        showMessage('Vui lòng đăng nhập để sử dụng giỏ hàng', 'error'); // Nên để type là 'error' hoặc 'warning'
-        return; // Dừng hàm
-    }
-            const magio =   window.userGlobalData.data.idkhach;
-            const formData = new FormData();
-            formData.append('magio',magio);
-            formData.append('masp',productId);
-            formData.append('soluong',1);
-             try {
-        // Gửi request đến API (thay YOUR_API_URL bằng URL thực tế)
-        const response =  await fetch('http://localhost/web2/controller/cart.php', {
-            method: 'POST',
-            body: formData
-        });
-        
-        const result =  await response.json();
-        
-        // Xử lý kết quả
-        if (result.success) {
-            showMessage('Đã thêm sản phẩm vào giỏ hàng!', 'success');
-            
-            // Đợi 1.5 giây rồi chuyển hướng
-            setTimeout(() => {
-                window.location.href = 'cart.html';
-            }, 1500);
-        } else {
-            // Hiển thị thông báo lỗi từ server
-            const errorMessage = result.message || 'Cập nhật thất bại!';
-            showMessage(`❌ ${errorMessage}`, 'error');
-        }
-        
-    } catch (error) {
-        // Xử lý lỗi
-        console.error('Error:', error);
-        showMessage(`❌ Đã xảy ra lỗi: ${error.message}`, 'error');
-    }
+// 9. Hàm thêm vào giỏ hàng (mẫu)
+async function addToCart(productId) {
+  event.preventDefault();
+  if (!window.userGlobalData || !window.userGlobalData.success) {
+    showMessage("Vui lòng đăng nhập để sử dụng giỏ hàng", "error"); // Nên để type là 'error' hoặc 'warning'
+    return; // Dừng hàm
+  }
+  const magio = window.userGlobalData.data.idkhach;
+  const formData = new FormData();
+  formData.append("magio", magio);
+  formData.append("masp", productId);
+  formData.append("soluong", 1);
+  try {
+    // Gửi request đến API (thay YOUR_API_URL bằng URL thực tế)
+    const response = await fetch("/controller/cart.php", {
+      method: "POST",
+      body: formData,
+    });
 
-        }
-        
+    const result = await response.json();
+
+    // Xử lý kết quả
+    if (result.success) {
+      showMessage("Đã thêm sản phẩm vào giỏ hàng!", "success");
+
+      // Đợi 1.5 giây rồi chuyển hướng
+      setTimeout(() => {
+        window.location.href = "cart.html";
+      }, 1500);
+    } else {
+      // Hiển thị thông báo lỗi từ server
+      const errorMessage = result.message || "Cập nhật thất bại!";
+      showMessage(`❌ ${errorMessage}`, "error");
+    }
+  } catch (error) {
+    // Xử lý lỗi
+    console.error("Error:", error);
+    showMessage(`❌ Đã xảy ra lỗi: ${error.message}`, "error");
+  }
+}
+
 // ==================== UTILITY FUNCTIONS ====================
 function formatPrice(price) {
-    return new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-    }).format(price);
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(price);
 }
 
 // Category mapping
 
-
 // ==================== QUICK VIEW FUNCTIONS ====================
 function ensureQuickViewRoot() {
-    let root = document.querySelector('.qv-overlay');
-    if (root) return root;
-    root = document.createElement('div');
-    root.className = 'qv-overlay';
-    document.body.appendChild(root);
-    return root;
+  let root = document.querySelector(".qv-overlay");
+  if (root) return root;
+  root = document.createElement("div");
+  root.className = "qv-overlay";
+  document.body.appendChild(root);
+  return root;
 }
 
 async function openQuickViewFromCard(card) {
-    const productId = card.dataset.productId;
+  const productId = card.dataset.productId;
 
-    if (!productId) {
-        console.error('Product ID not found');
-        return;
+  if (!productId) {
+    console.error("Product ID not found");
+    return;
+  }
+
+  try {
+    // Fetch product details from API
+    const response = await fetch(`controller/product.php?masp=${productId}`);
+    const data = await response.json();
+
+    if (!data.success) {
+      console.error("Failed to fetch product details:", data.message);
+      return;
     }
 
-    try {
-        // Fetch product details from API
-        const response = await fetch(`controller/product.php?masp=${productId}`);
-        const data = await response.json();
+    const product = data.data;
+    const imageUrl = product.link;
+    const categoryMapping = {
+      Thieunhi: "Thiếu nhi",
+      Tamly: "Tâm lý",
+      Tongiao: "Tôn giáo",
+      Lichsu: "Lịch sử",
+      Vanhoc: "Văn học",
+    };
+    const danhmuc = categoryMapping[product.danhmuc];
 
-        if (!data.success) {
-            console.error('Failed to fetch product details:', data.message);
-            return;
-        }
-
-        const product = data.data;
-        const imageUrl = product.link;
-         const categoryMapping = {
-                    'Thieunhi': 'Thiếu nhi',
-                    'Tamly': 'Tâm lý',
-                    'Tongiao': 'Tôn giáo',
-                    'Lichsu': 'Lịch sử',
-                    'Vanhoc': 'Văn học'
-                };
-        const danhmuc = categoryMapping[product.danhmuc];
-
-        const root = ensureQuickViewRoot();
-        root.innerHTML = `
+    const root = ensureQuickViewRoot();
+    root.innerHTML = `
             <div class="qv-card" role="dialog" aria-modal="true" aria-label="Xem nhanh sản phẩm">
                 <button class="qv-close" aria-label="Đóng">✖</button>
                 <div class="qv-body">
@@ -675,7 +683,7 @@ async function openQuickViewFromCard(card) {
                     <div class="qv-content">
                         <h2 class="qv-title">${product.tensp}</h2>
                         <div class="qv-price">Giá: ${formatPrice(product.gia)}</div>
-                        <div class="qv-desc">${product.mota || 'Chưa có mô tả cho sản phẩm này.'}</div>
+                        <div class="qv-desc">${product.mota || "Chưa có mô tả cho sản phẩm này."}</div>
                         
                         <div class="qv-meta-container">
                             <div class="qv-meta-item">
@@ -696,70 +704,74 @@ async function openQuickViewFromCard(card) {
             </div>
         `;
 
-        root.style.display = 'flex';
+    root.style.display = "flex";
 
-        const close = () => { 
-            root.style.display = 'none'; 
-            root.innerHTML = ''; 
-        };
-        
-        root.addEventListener('click', (e) => { 
-            if (e.target === root) close(); 
-        });
-        
-        root.querySelector('.qv-close').addEventListener('click', close);
-        
-        const onEsc = (e) => { 
-            if (e.key === 'Escape') { 
-                close(); 
-                document.removeEventListener('keydown', onEsc); 
-            } 
-        };
-        document.addEventListener('keydown', onEsc);
+    const close = () => {
+      root.style.display = "none";
+      root.innerHTML = "";
+    };
 
-    } catch (error) {
-        console.error('Error fetching product details:', error);
-    }
+    root.addEventListener("click", (e) => {
+      if (e.target === root) close();
+    });
+
+    root.querySelector(".qv-close").addEventListener("click", close);
+
+    const onEsc = (e) => {
+      if (e.key === "Escape") {
+        close();
+        document.removeEventListener("keydown", onEsc);
+      }
+    };
+    document.addEventListener("keydown", onEsc);
+  } catch (error) {
+    console.error("Error fetching product details:", error);
+  }
 }
 
 // Ghi đè hàm openQuickViewForSearchResult
-window.openQuickViewForSearchResult = async function(productId) {
-    // Tạo một card ảo để sử dụng hàm openQuickViewFromCard
-    const fakeCard = document.createElement('div');
-    fakeCard.setAttribute('data-product-id', productId);
-    
-    // Mở Quick View bằng hàm đã có
-    openQuickViewFromCard(fakeCard);
+window.openQuickViewForSearchResult = async function (productId) {
+  // Tạo một card ảo để sử dụng hàm openQuickViewFromCard
+  const fakeCard = document.createElement("div");
+  fakeCard.setAttribute("data-product-id", productId);
+
+  // Mở Quick View bằng hàm đã có
+  openQuickViewFromCard(fakeCard);
 };
 
 // Khởi tạo
 ensureQuickViewRoot();
 // FIX HEADER HEIGHT AND POSITION
-document.addEventListener('DOMContentLoaded', function() {
-    // Đợi một chút để đảm bảo các phần tử đã load xong
-    setTimeout(function() {
-        fixHeaderPosition();
-    }, 100);
-    
-    // Cũng fix lại khi resize window
-    window.addEventListener('resize', fixHeaderPosition);
+document.addEventListener("DOMContentLoaded", function () {
+  // Đợi một chút để đảm bảo các phần tử đã load xong
+  setTimeout(function () {
+    fixHeaderPosition();
+  }, 100);
+
+  // Cũng fix lại khi resize window
+  window.addEventListener("resize", fixHeaderPosition);
 });
 
 function fixHeaderPosition() {
-    const nav = document.querySelector('.nav');
-    const bottomBar = document.querySelector('.bottom-bar');
-    
-    if (!nav || !bottomBar) return;
-    
-    // 1. Lấy chiều cao chính xác của nav
-    const navHeight = nav.offsetHeight;
-    
-    // 2. Đặt bottom-bar sát dưới nav
-    bottomBar.style.top = navHeight + 'px';
-    
-    // 3. Tính tổng chiều cao và đặt padding cho body
-    const totalHeight = navHeight + bottomBar.offsetHeight;
-    document.body.style.paddingTop = totalHeight + 'px';
-    
-    console.log('Header fixed - Nav height:', navHeight, 'Total height:', totalHeight);
+  const nav = document.querySelector(".nav");
+  const bottomBar = document.querySelector(".bottom-bar");
+
+  if (!nav || !bottomBar) return;
+
+  // 1. Lấy chiều cao chính xác của nav
+  const navHeight = nav.offsetHeight;
+
+  // 2. Đặt bottom-bar sát dưới nav
+  bottomBar.style.top = navHeight + "px";
+
+  // 3. Tính tổng chiều cao và đặt padding cho body
+  const totalHeight = navHeight + bottomBar.offsetHeight;
+  document.body.style.paddingTop = totalHeight + "px";
+
+  console.log(
+    "Header fixed - Nav height:",
+    navHeight,
+    "Total height:",
+    totalHeight,
+  );
 }

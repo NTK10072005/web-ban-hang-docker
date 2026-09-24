@@ -40,7 +40,7 @@ if ($action == 'VN Pay') {
     <?php
     
 } elseif ($action == 'MOMO') {
-   $api_url = "http://localhost/web2/momo_php/index.php";
+   $api_url = "/momo_php/index.php";
     $post_data = array(
         'orderId' => $madh, // Sử dụng biến $madh từ GET ở trên
         'amount' => $amount

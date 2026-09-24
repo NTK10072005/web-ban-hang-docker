@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $soluong = $productData['soluong'];
             
             // Gọi API để lấy thông tin sản phẩm
-            $api_url = "http://localhost/web2/controller/product.php?masp=" . urlencode($masp);
+            $api_url = "/controller/product.php?masp=" . urlencode($masp);
             
             // Sử dụng cURL để gọi API
             $ch = curl_init();
@@ -659,7 +659,7 @@ window.userGlobalData = null;
 async function checkLoginAndUpdateUI() {
     try {
         // Gọi API kiểm tra đăng nhập
-        const response = await fetch('http://localhost/web2/controller/checklogin.php');
+        const response = await fetch('/controller/checklogin.php');
         window.userGlobalData = await response.json();
         
         // Cập nhật giao diện
@@ -1161,7 +1161,7 @@ async function performSearch2() {
             formData.append('soluong',1);
              try {
         // Gửi request đến API (thay YOUR_API_URL bằng URL thực tế)
-        const response =  await fetch('http://localhost/web2/controller/cart.php', {
+        const response =  await fetch('/controller/cart.php', {
             method: 'POST',
             body: formData
         });
@@ -1974,7 +1974,7 @@ function createOrderData() {
 async function submitOrder(orderData) {
     try {
         console.log('Submitting order...');
-        const apiUrl = 'http://localhost/web2/controller/donhang.php';
+        const apiUrl = '/controller/donhang.php';
         
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -1992,7 +1992,7 @@ async function submitOrder(orderData) {
             await clearCart();
             if(orderData.thanhtoan !== 'COD'){
             setTimeout(() => {
-                window.location.href = `http://localhost/web2/controller/payment.php?amount=${orderData.tongtien}&action=${orderData.thanhtoan}&madh=${result.data.madh}`;
+                window.location.href = `/controller/payment.php?amount=${orderData.tongtien}&action=${orderData.thanhtoan}&madh=${result.data.madh}`;
             }, 2000);
          }
          else{
@@ -2018,7 +2018,7 @@ async function clearCart() {
     try {
         for (const item of cartItems) {
             try {
-                const response = await fetch(`http://localhost/web2/controller/cart.php?magio=${customerId}&masp=${item.masp}`, {
+                const response = await fetch(`/controller/cart.php?magio=${customerId}&masp=${item.masp}`, {
                     method: 'DELETE'
                 });
                 
@@ -2314,7 +2314,7 @@ async function loadCategoriesToSearchModal() {
     const categorySelect = document.getElementById('advancedCategorySelect');
     
     // Đường dẫn API của bạn (thay đổi cho đúng với project của bạn)
-    const apiUrl = 'http://localhost/web2/controller/danhmuc.php?action=all'; 
+    const apiUrl = '/controller/danhmuc.php?action=all'; 
 
     try {
         const response = await fetch(apiUrl);

@@ -5,7 +5,7 @@ $madh = isset($_GET['madh']) ? intval($_GET['madh']) : 0;
 
 
 // 3. Gọi API để lấy chi tiết đơn hàng
-$api_url = "http://localhost/web2/controller/donhang.php?action=chitiet&madh=" . $madh;
+$api_url = "/controller/donhang.php?action=chitiet&madh=" . $madh;
 $json_data = file_get_contents($api_url);
 
 
@@ -788,7 +788,7 @@ window.userGlobalData = null;
 async function checkLoginAndUpdateUI() {
     try {
         // Gọi API kiểm tra đăng nhập
-        const response = await fetch('http://localhost/web2/controller/checklogin.php');
+        const response = await fetch('/controller/checklogin.php');
         window.userGlobalData = await response.json();
         
         // Cập nhật giao diện
@@ -1310,7 +1310,7 @@ async function performSearch2() {
             formData.append('soluong',1);
              try {
         // Gửi request đến API (thay YOUR_API_URL bằng URL thực tế)
-        const response =  await fetch('http://localhost/web2/controller/cart.php', {
+        const response =  await fetch('/controller/cart.php', {
             method: 'POST',
             body: formData
         });
@@ -1523,7 +1523,7 @@ async function loadCategoriesToSearchModal() {
     const categorySelect = document.getElementById('advancedCategorySelect');
     
     // Đường dẫn API của bạn (thay đổi cho đúng với project của bạn)
-    const apiUrl = 'http://localhost/web2/controller/danhmuc.php?action=alladmin'; 
+    const apiUrl = '/controller/danhmuc.php?action=alladmin'; 
 
     try {
         const response = await fetch(apiUrl);

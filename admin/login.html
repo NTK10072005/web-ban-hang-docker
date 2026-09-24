@@ -1,229 +1,306 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Đăng nhập Admin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            background: linear-gradient(to bottom, #FF954E 0%, #FF954E 15%, #FFD8B7 40%, #FFFFFF 80%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+      body {
+        background: linear-gradient(
+          to bottom,
+          #ff954e 0%,
+          #ff954e 15%,
+          #ffd8b7 40%,
+          #ffffff 80%
+        );
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .login-container {
+        background-color: #fff;
+        padding: 50px 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 450px;
+        max-width: 95%;
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      .login-container h2 {
+        text-align: center;
+        margin-bottom: 35px;
+        color: #333;
+        font-size: 2rem;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 1.05rem;
+        transition: all 0.3s;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #ff8176;
+        box-shadow: 0 0 0 3px rgba(255, 129, 118, 0.2);
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 14px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        background-color: #ff8176;
+        color: white;
+        margin-top: 20px;
+      }
+
+      .btn:hover {
+        background-color: #ff6b5e;
+        transform: translateY(-2px);
+      }
+
+      /* --- CSS CHO TOAST NOTIFICATION --- */
+      #toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+      }
+
+      .toast {
+        min-width: 300px;
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        animation:
+          slideIn 0.5s ease,
+          fadeOut 0.5s ease 2.5s forwards;
+      }
+
+      .toast.success {
+        background-color: #28a745;
+        border-left: 6px solid #1e7e34;
+      }
+      .toast.error {
+        background-color: #dc3545;
+        border-left: 6px solid #bd2130;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
         }
-
-        .login-container {
-            background-color: #fff;
-            padding: 50px 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 450px;
-            max-width: 95%;
-            animation: fadeIn 0.8s ease-out forwards;
+        to {
+          transform: translateX(0);
+          opacity: 1;
         }
+      }
 
-        .login-container h2 { text-align: center; margin-bottom: 35px; color: #333; font-size: 2rem; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; color: #333; font-weight: 500; }
-        
-        .form-control {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid #ced4da;
-            border-radius: 6px;
-            font-size: 1.05rem;
-            transition: all 0.3s;
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
         }
-
-        .form-control:focus { outline: none; border-color: #FF8176; box-shadow: 0 0 0 3px rgba(255, 129, 118, 0.2); }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background-color: #FF8176;
-            color: white;
-            margin-top: 20px;
+        to {
+          opacity: 0;
+          transform: translateY(-20px);
         }
+      }
 
-        .btn:hover { background-color: #ff6b5e; transform: translateY(-2px); }
-
-        /* --- CSS CHO TOAST NOTIFICATION --- */
-        #toast-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
-
-        .toast {
-            min-width: 300px;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            animation: slideIn 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
+      /* Wrapper chứa input và icon */
+      .password-wrapper {
+        position: relative;
+      }
 
-        .toast.success { background-color: #28a745; border-left: 6px solid #1e7e34; }
-        .toast.error { background-color: #dc3545; border-left: 6px solid #bd2130; }
+      /* Input phải có khoảng trống bên phải để không bị icon che */
+      .password-wrapper input {
+        padding-right: 45px;
+      }
 
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
+      /* Icon con mắt */
+      .password-toggle {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+        z-index: 10;
+        transition: color 0.2s;
+      }
 
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; transform: translateY(-20px); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Wrapper chứa input và icon */
-.password-wrapper {
-    position: relative;
-}
-
-/* Input phải có khoảng trống bên phải để không bị icon che */
-.password-wrapper input {
-    padding-right: 45px;
-}
-
-/* Icon con mắt */
-.password-toggle {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #6c757d;
-    z-index: 10;
-    transition: color 0.2s;
-}
-
-.password-toggle:hover {
-    color: #FF8176; /* Màu cam chủ đạo của nút đăng nhập */
-}
+      .password-toggle:hover {
+        color: #ff8176; /* Màu cam chủ đạo của nút đăng nhập */
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div id="toast-container"></div>
 
     <div class="login-container">
-        <h2>Đăng nhập Admin</h2>
-        <form onsubmit="checkLogin(event)">
-            <div class="form-group">
-                <label for="username">Tên đăng nhập</label>
-                <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" required>
-            </div>
-            <div class="form-group">
-    <label for="password">Mật khẩu</label>
-    <div class="password-wrapper">
-        <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
-        <i class="fas fa-eye-slash password-toggle" id="togglePassword" role="button" aria-label="Hiển thị mật khẩu" tabindex="0"></i>
-    </div>
-</div>
-            <button type="submit" class="btn">Đăng nhập</button>
-        </form>
+      <h2>Đăng nhập Admin</h2>
+      <form onsubmit="checkLogin(event)">
+        <div class="form-group">
+          <label for="username">Tên đăng nhập</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Nhập tên đăng nhập"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Nhập mật khẩu"
+              required
+            />
+            <i
+              class="fas fa-eye-slash password-toggle"
+              id="togglePassword"
+              role="button"
+              aria-label="Hiển thị mật khẩu"
+              tabindex="0"
+            ></i>
+          </div>
+        </div>
+        <button type="submit" class="btn">Đăng nhập</button>
+      </form>
     </div>
 
     <script>
-        // Hàm hiển thị thông báo "đẹp" dùng chung
-        function showNotification(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            
-            // Tạo phần tử toast
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.innerText = message;
+      // Hàm hiển thị thông báo "đẹp" dùng chung
+      function showNotification(message, type = "success") {
+        const container = document.getElementById("toast-container");
 
-            // Thêm vào container
-            container.appendChild(toast);
+        // Tạo phần tử toast
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerText = message;
 
-            // Tự động xóa sau 3 giây
+        // Thêm vào container
+        container.appendChild(toast);
+
+        // Tự động xóa sau 3 giây
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
+      async function checkLogin(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Tạo FormData
+        const formData = new FormData();
+        formData.append("username", username);
+        formData.append("password", password);
+
+        try {
+          const response = await fetch("/controller/xulylogin.php", {
+            method: "POST",
+            body: formData,
+          });
+
+          const data = await response.json();
+
+          if (data.success === true) {
+            showNotification(data.message, "success");
+
+            // Đợi 1.5 giây để người dùng kịp nhìn thông báo thành công rồi mới chuyển trang
             setTimeout(() => {
-                toast.remove();
-            }, 3000);
+              window.location.href = "/admin/home.php";
+            }, 1500);
+          } else {
+            showNotification(data.message, "error");
+          }
+        } catch (error) {
+          showNotification("Không thể kết nối máy chủ!", `${error.message}`);
         }
+      }
+      // Toggle hiển thị mật khẩu
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
 
-        async function checkLogin(event) {
-            event.preventDefault();
+      if (togglePassword && passwordInput) {
+        togglePassword.addEventListener("click", function () {
+          // Kiểm tra trạng thái hiện tại
+          const type =
+            passwordInput.getAttribute("type") === "password"
+              ? "text"
+              : "password";
+          passwordInput.setAttribute("type", type);
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+          // Đổi icon: nếu đang ẩn (fa-eye-slash) -> hiện (fa-eye) và ngược lại
+          this.classList.toggle("fa-eye-slash");
+          this.classList.toggle("fa-eye");
 
-            // Tạo FormData
-            const formData = new FormData();
-            formData.append('username', username);
-            formData.append('password', password);
+          // Cập nhật aria-label cho accessibility
+          const label =
+            type === "password" ? "Hiển thị mật khẩu" : "Ẩn mật khẩu";
+          this.setAttribute("aria-label", label);
+        });
 
-            try {
-                const response = await fetch('http://localhost/web2/controller/xulylogin.php', {
-                    method: 'POST',
-                    body: formData
-                });
-
-
-                const data = await response.json();
-
-                if (data.success === true) {
-                    showNotification(data.message, 'success');
-                    
-                    // Đợi 1.5 giây để người dùng kịp nhìn thông báo thành công rồi mới chuyển trang
-                    setTimeout(() => {
-                        window.location.href = 'http://localhost/web2/admin/home.php';
-                    }, 1500);
-                } else {
-                    showNotification(data.message, 'error');
-                }
-            } catch (error) {
-                showNotification("Không thể kết nối máy chủ!", `${error.message}`);
-            }
-        }
-        // Toggle hiển thị mật khẩu
-const togglePassword = document.getElementById('togglePassword');
-const passwordInput = document.getElementById('password');
-
-if (togglePassword && passwordInput) {
-    togglePassword.addEventListener('click', function() {
-        // Kiểm tra trạng thái hiện tại
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-
-        // Đổi icon: nếu đang ẩn (fa-eye-slash) -> hiện (fa-eye) và ngược lại
-        this.classList.toggle('fa-eye-slash');
-        this.classList.toggle('fa-eye');
-
-        // Cập nhật aria-label cho accessibility
-        const label = type === 'password' ? 'Hiển thị mật khẩu' : 'Ẩn mật khẩu';
-        this.setAttribute('aria-label', label);
-    });
-
-    // Hỗ trợ phím Enter khi focus vào icon
-    togglePassword.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
+        // Hỗ trợ phím Enter khi focus vào icon
+        togglePassword.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
             this.click();
-        }
-    });
-}
+          }
+        });
+      }
     </script>
-</body>
+  </body>
 </html>
